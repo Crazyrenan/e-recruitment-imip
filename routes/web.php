@@ -39,6 +39,10 @@ Route::get('/dashboard/info', function () {
     return view('dashboard.info');
 })->name('dashboard.info');
 
+Route::get('/dashboard/news/info', function () {
+    return view('dashboard.news-show');
+})->name('dashboard.news-show');
+
 // Route untuk Data Permintaan
 Route::get('/dashboard/formulir/permintaan', function () {
     return view('dashboard.formulir-permintaan');
@@ -52,3 +56,4 @@ Route::get('/dashboard/formulir/kontak', function () {
 Route::get('/dashboard/formulir/personal', function () {
     return view('dashboard.formulir-personal');
 })->name('formulir.personal');
+

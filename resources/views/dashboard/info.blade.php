@@ -137,7 +137,7 @@
     }
 
     .badge-publish { background-color: #03624C; } /* Hijau Tua */
-    .badge-date { background-color: #FNB041; background-color: #fca503; } /* Kuning/Oranye */
+    .badge-date { background-color: #fca503; } /* Kuning/Oranye */
 
     .news-desc {
         color: #555;
@@ -229,7 +229,10 @@
             <p class="news-desc">
                 Informasi Penting! Bagi pelamar yang akan diproses mulai tanggal 10 November 2021 diwajibkan telah melaksanakan vaksin Covid-19 dan dibuktikan dengan sertifikat vaksin...
             </p>
-            <a href="#" class="read-more">Selengkapnya</a>
+            
+            {{-- Perubahan di sini: Menambahkan route('news.show') --}}
+            <a href="{{ route('dashboard.news-show') }}" class="read-more">Selengkapnya</a>
+        
         </div>
     </div>
 
