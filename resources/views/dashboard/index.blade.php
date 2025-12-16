@@ -41,7 +41,7 @@
         justify-content: center;
         font-size: 1.2rem;
         color: white;
-        flex-shrink: 0; /* Prevents icon from shrinking on small screens */
+        flex-shrink: 0; 
     }
 
     /* Icon Background Colors */

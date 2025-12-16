@@ -34,9 +34,9 @@
     }
 
     .form-control-highlight {
-        background-color: #03624C;
+        background-color: #f3f3f3;
         color: white;
-        border: 1px solid #03624C;
+        border: 1px solid #f3f3f3;
     }
     .form-control-highlight:focus {
         background-color: #03624C;
@@ -196,8 +196,8 @@
     </div>
 
     <div class="action-buttons">
-        <button type="button" class="btn-selesai"><i class="bi bi-save"></i> Selesai</button>
         <a href="{{ route('dashboard.formulir') }}" class="btn-batal"><i class="bi bi-x-circle"></i> Batal</a>
+        <button type="button" class="btn-selesai"><i class="bi bi-save"></i> Selesai</button>
     </div>
 </form>
 

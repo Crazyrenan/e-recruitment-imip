@@ -47,7 +47,7 @@
         object-fit: cover;
     }
 
-    /* Overlay Gradient supaya teks putih terbaca jelas */
+
     .carousel-overlay {
         position: absolute;
         bottom: 0;
