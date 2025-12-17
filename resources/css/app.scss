@@ -1,12 +1,753 @@
-@import 'tailwindcss';
-@import "bootstrap/scss/bootstrap";
+@use "sass:color"; /* 1. REQUIRED: Import the color module */
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* =========================================
+   1. VARIABLES & CONFIG
+   ========================================= */
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+$imip-primary: #198754;       // Hijau Bootstrap Success
+$imip-dark:    #03624C;       // Hijau Tua IMIP
+$imip-accent:  #e8f5e9;       // Hijau Muda (Background Icon)
+
+/* 2. REQUIRED: Define this variable to prevent errors */
+$primary-green: #03624C;      
+$danger-red:    #d32f2f;
+
+$text-dark:    #000000;
+$text-muted:   #666666;
+$bg-readonly: #e9ecef; // Standard UX Gray for readonly
+$text-readonly: #495057; // Darker text for readability
+$border-color: #ced4da;
+$card-radius:  16px;
+
+
+:root {
+    --primary: #{$imip-primary};
+    --primary-hover: #{$imip-dark};
+    
+    /* Dashboard Status Colors */
+    --success: #10B981;
+    --danger: #EF4444;    
+    --warning: #F59E0B;
+    --primary-green: #03624C;
+    
+    /* Dashboard Neutrals */
+    --bg-body: #F3F4F6;  
+    --bg-card: #FFFFFF;
+    --text-main: #1F2937;
+    --border-color: #E5E7EB;
+    
+    /* UI Measurements */
+    --radius-sm: 4px;
+    --radius-md: 8px;   
+    --card-radius: 16px;
+    --card-radius-sm: 12px;  /* For buttons/inputs */
+}
+
+// Import Bootstrap Icons
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+/* =========================================
+   2. GLOBAL STYLES
+   ========================================= */
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    padding-top: 0;
+    color: var(--text-main);
+}
+
+body.has-navbar {
+    padding-top: 100px;
+}
+
+// Special Background for Dashboard Pages
+body.dashboard-mode {
+    background-color: var(--bg-body);
+}
+
+.section-padding {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+// Utility Warna Custom
+.text-imip-primary { color: $imip-primary !important; }
+.text-imip-dark    { color: $imip-dark !important; }
+.bg-imip-dark      { background-color: $imip-dark !important; }
+.bg-light-gray     { background-color: #f8f9fa !important; }
+
+/* =========================================
+   3. REUSABLE COMPONENTS
+   ========================================= */
+
+/* --- 3a. Universal Hover Card --- */
+.hover-card {
+    background: white;
+    border-radius: $card-radius;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        border-color: $imip-primary;
+
+        .icon-box {
+            background-color: $imip-primary;
+            color: white;
+            transform: rotateY(360deg);
+        }
+    }
+}
+
+/* --- 3b. IMIP Landing Buttons (Legacy) --- */
+.btn-imip {
+    &-green {
+        background-color: $imip-primary;
+        color: white;
+        font-weight: 600;
+        padding: 12px 30px;
+        border-radius: 50px; /* Pill shape for landing */
+        border: none;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+
+        &:hover {
+            /* 3. FIX: Updated darken to color.adjust */
+            background-color: color.adjust($imip-primary, $lightness: -10%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba($imip-primary, 0.3);
+        }
+    }
+
+    &-outline {
+        border: 2px solid #333;
+        color: #333;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 10px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: #333;
+            color: white;
+        }
+    }
+}
+
+/* Use these inside the dashboard (Edit, Save, Delete) */
+.btn-ui {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.25rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border-radius: var(--radius-md); /* Square-ish shape for dashboard */
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    gap: 0.5rem;
+    line-height: 1.5;
+
+    /* Primary (Save/Submit) - Uses IMIP Green */
+    &.btn-ui-primary {
+        background-color: var(--primary);
+        color: white;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+
+        &:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+    }
+
+    /* Secondary (Cancel/Back) */
+    &.btn-ui-secondary {
+        background-color: white;
+        border-color: var(--border-color);
+        color: var(--text-main);
+
+        &:hover {
+            background-color: #F9FAFB;
+            border-color: #D1D5DB;
+        }
+    }
+
+    /* Danger (Delete/Reject) */
+    &.btn-ui-danger {
+        background-color: var(--danger);
+        color: white;
+
+        &:hover {
+            filter: brightness(90%);
+        }
+    }
+
+    /* Ghost (Transparent) */
+    &.btn-ui-ghost {
+        background-color: transparent;
+        color: var(--text-muted);
+        padding: 0.5rem;
+
+        &:hover {
+            background-color: rgba(0,0,0,0.05);
+            color: var(--primary);
+        }
+    }
+}
+
+/* --- 3d. Icon Box (Vision, Mission, Info) --- */
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background-color: $imip-accent;
+    color: $imip-primary;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+}
+
+/* --- 3e. Search Bar Custom --- */
+.job-search-container {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    max-width: 900px;
+    margin: 0 auto;
+
+    .search-input-group {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: 1px solid transparent;
+        transition: 0.3s;
+
+        &:focus-within {
+            border-color: $imip-primary;
+            background: white;
+        }
+    }
+}
+
+.form-control-clean {
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    color: $text-dark;
+    font-size: 0.95rem;
+}
+
+/* --- 3f. Tenant Logos & Footer --- */
+.tenant-logo {
+    height: 40px;
+    object-fit: contain;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    filter: grayscale(100%); 
+
+    &:hover {
+        opacity: 1;
+        filter: grayscale(0%);
+    }
+}
+
+.footer-imip {
+    background-color: $imip-dark;
+    color: #b0b0b0;
+    padding-top: 60px;
+    padding-bottom: 30px;
+
+    a {
+        color: #b0b0b0;
+        text-decoration: none;
+        transition: 0.3s;
+        &:hover { color: $imip-primary; padding-left: 5px; }
+    }
+}
+
+/* =========================================
+   4. PAGE SPECIFIC & RESPONSIVE
+   ========================================= */
+// Background Shape Hero (Desktop)
+.hero-bg-shape {
+    position: absolute;
+    top: 50%; right: -10%;
+    transform: translateY(-50%);
+    width: 120%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-img-container {
+    position: relative;
+    z-index: 1;
+    overflow: visible; 
+}
+
+.hero-blob {
+    position: absolute;
+    top: 60%;
+    right: -15%;
+    transform: translateY(-50%);
+    width: 120%;
+    z-index: -1;
+    max-width: none;
+}
+
+.hero-figure {
+    position: relative;
+    left: -10%;
+    width: 130%;
+    max-width: 130% !important;
+    height: auto;
+}
+
+@media (max-width: 991px) {
+    .hero-img-container {
+        display: none;
+    }
+}
+
+// Floating Images (About Section)
+.about-floating-img {
+    position: absolute;
+    top: 50%;
+    height: 400px;
+    width: auto;
+    max-width: 250px;
+    object-fit: cover;
+    z-index: 1;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: all 0.5s ease;
+
+    &.img-left {
+        left: 2%;
+        transform: translateY(-50%) perspective(500px) rotateY(35deg) rotateX(5deg);
+    }
+
+    &.img-right {
+        right: 2%;
+        transform: translateY(-50%) perspective(500px) rotateY(-35deg) rotateX(5deg);
+    }
+}
+
+@media (max-width: 1400px) {
+    .about-floating-img {
+        height: 350px;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .about-floating-img {
+        opacity: 0; 
+        pointer-events: none;
+    }
+}
+
+/* =========================================
+   5. NAVBAR SCROLL EFFECT
+   ========================================= */
+.navbar-transition {
+    transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.navbar-transparent {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+}
+
+.navbar-scrolled {
+    background-color: white !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
+}
+
+body.home-page {
+    padding-top: 0 !important;
+}
+
+/* =========================================
+   6. AUTH PAGES (Login/Register)
+   ========================================= */
+.auth-wrapper {
+    width: 100%;
+    
+    @media (min-width: 992px) {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    @media (max-width: 991px) {
+        height: auto;
+        min-height: 100vh;
+        overflow-x: hidden;
+        background-color: white;
+    }
+}
+
+.auth-form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    height: 100%;
+    background-color: white;
+    
+    @media (min-width: 992px) {
+        overflow-y: auto;
+    }
+ 
+    @media (max-width: 991px) {
+        height: auto;
+        padding: 40px 20px;
+        justify-content: flex-start; 
+    }
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+}
+
+.auth-image-section {
+    height: 100%;
+    padding-left: 30px;
+    background-color: white;
+
+    .auth-image-bg {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        border-top-left-radius: 40px;
+        border-bottom-left-radius: 40px;
+    }
+}
+
+.auth-divider {
+    text-align: center;
+    position: relative;
+    margin: 15px 0;
+    color: #999;
+    font-size: 0.8rem;
+
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 45%;
+        height: 1px;
+        background-color: #eee;
+    }
+    &::before { left: 0; }
+    &::after { right: 0; }
+}
+
+
+.form-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 30px 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    border: 1px solid transparent;
+
+    /* Header inside the card */
+    .form-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 20px;
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 5px;
+            
+            span { color: $primary-green; }
+        }
+
+        .form-subtitle {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .header-icon {
+            background-color: #e8f5e9;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $primary-green;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+/* 2. Global Input Styling */
+.form-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    font-size: 0.95rem;
+    margin-bottom: 5px; // Space for caption
+
+    &:focus {
+        border-color: $primary-green;
+        box-shadow: 0 0 0 0.25rem rgba(3, 98, 76, 0.15);
+    }
+
+    /* STANDARD UX: Readonly / Disabled State */
+    &[readonly], &[disabled] {
+        background-color: $bg-readonly; /* Light Gray Background */
+        color: $text-readonly; /* Dark Gray Text */
+        border-color: $border-color;
+        cursor: not-allowed;
+        opacity: 1; 
+    }
+}
+
+/* 3. Helper Text */
+.input-caption {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 4px;
+    margin-bottom: 20px;
+    display: block;
+    
+    i { margin-right: 4px; }
+}
+
+/* 4. Input Groups (Height/Weight) */
+.input-group-text {
+    background-color: $bg-readonly;
+    border: 1px solid $border-color;
+    color: #666;
+}
+
+/* 5. Warning Box Component */
+.warning-box {
+    background-color: #fff4f4; /* Very light red background */
+    border: 1px solid #ffcccc;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    margin: 40px 0 20px 0;
+
+    .warning-title {
+        color: #d32f2f;
+        font-weight: 700;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    .warning-text {
+        font-size: 0.9rem;
+        color: #555;
+        line-height: 1.6;
+        margin: 0;
+    }
+}
+
+/* 6. Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+
+    /* --- RESPONSIVE FIX (MODE HP) --- */
+    @media (max-width: 768px) {
+        flex-direction: column-reverse; /* Batal di bawah, Selesai di atas (agar tombol utama lebih mudah dijangkau) */
+        gap: 15px;
+        width: 100%;
+
+        .btn-custom {
+            width: 100%; /* Tombol memenuhi layar */
+            justify-content: center; /* Teks & Ikon di tengah */
+            padding: 14px; /* Sedikit lebih tebal untuk jari */
+        }
+    }
+    /* -------------------------------- */
+
+    .btn-custom {
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        transition: all 0.2s;
+        text-decoration: none;
+        cursor: pointer;
+
+        &.btn-save {
+            background-color: $primary-green;
+            color: white;
+            &:hover { 
+                background-color: color.adjust($primary-green, $lightness: -5%); 
+            }
+        }
+
+        &.btn-cancel {
+            background-color: $danger-red;
+            color: white;
+            &:hover { 
+                background-color: color.adjust($danger-red, $lightness: -5%); 
+            }
+        }
+    }
+}
+
+
+/* =========================================
+   7. GLOBAL FORM COMPONENTS (Reused across all forms)
+   ========================================= */
+
+/* The White Card Container */
+.form-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 30px 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    border: 1px solid transparent;
+
+    /* Header Styling */
+    .form-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 20px;
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 5px;
+            span { color: $primary-green; }
+        }
+        .form-subtitle { color: #666; font-size: 0.95rem; margin: 0; }
+        .header-icon {
+            background-color: $imip-accent;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: $primary-green; font-size: 1.5rem;
+        }
+    }
+}
+
+/* Inputs */
+.form-label { font-weight: 600; color: #333; font-size: 0.9rem; margin-bottom: 8px; }
+.form-control, .form-select {
+    padding: 12px 15px; border-radius: 8px; border: 1px solid $border-color;
+    font-size: 0.95rem; margin-bottom: 5px; 
+    &:focus { border-color: $primary-green; box-shadow: 0 0 0 0.25rem rgba(3, 98, 76, 0.15); }
+    &[readonly], &[disabled] {
+        background-color: $bg-readonly !important; color: $text-readonly; 
+        border-color: $border-color; cursor: not-allowed;
+    }
+}
+.input-caption { font-size: 0.75rem; color: #888; margin-top: 4px; margin-bottom: 20px; display: block; i { margin-right: 4px; } }
+.input-group-text { background-color: $bg-readonly; border: 1px solid $border-color; color: #666; }
+
+/* Warning Box */
+.warning-box {
+    background-color: #fff4f4; border: 1px solid #ffcccc; border-radius: 12px;
+    padding: 25px; text-align: center; margin: 40px 0 20px 0;
+    .warning-title { color: #d32f2f; font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
+    .warning-text { font-size: 0.9rem; color: #555; line-height: 1.6; margin: 0; }
+}
+
+/* Buttons */
+.action-buttons {
+    display: flex; justify-content: flex-end; gap: 15px; margin-top: 30px;
+    .btn-custom {
+        padding: 12px 30px; border-radius: 8px; font-weight: 600;
+        display: flex; align-items: center; gap: 8px; border: none;
+        transition: all 0.2s; text-decoration: none; cursor: pointer;
+        &.btn-save {
+            background-color: $primary-green; color: white;
+            &:hover { background-color: color.adjust($primary-green, $lightness: -5%); }
+        }
+        &.btn-cancel {
+            background-color: #d32f2f; color: white;
+            &:hover { background-color: color.adjust(#d32f2f, $lightness: -5%); }
+        }
+    }
+}
+
+/* =========================================
+   8. DASHBOARD SPECIFIC COMPONENTS
+   ========================================= */
+
+/* Base Dashboard Card */
+.card-dashboard {
+    background-color: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    border: 1px solid transparent;
+}
+
+/* Quick Access Hover Card Override */
+.hover-card {
+    border: 1px solid #eee;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: white;
+    border-radius: 12px;
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        border-color: transparent;
+        cursor: pointer;
+    }
+}
+
+
+.carousel-item img {
+    object-fit: cover;
+    opacity: 1 !important;
+    filter: brightness(100%) !important;
+}
+.carousel-caption {
+    background: transparent !important;
 }

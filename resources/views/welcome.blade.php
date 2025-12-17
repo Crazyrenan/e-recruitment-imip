@@ -5,666 +5,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMIP - Recruitment</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            padding-top: 100px; 
-        }
-
-        /* --- NAVBAR STYLING --- */
-        .navbar {
-            background-color: white;
-            transition: padding 0.3s;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .navbar { padding-top: 24px; padding-bottom: 24px; }
-        
-        .navbar-brand img { height: 50px; }
-
-        .nav-link {
-            color: #333;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 14px;
-            margin-right: 24px;
-        }
-
-        .btn-register {
-            border: 2px solid #333;
-            color: #333;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 14px;
-            padding: 12px 24px;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .btn-register:hover {
-            background-color: #333;
-            color: white;
-        }
-
-        /* --- HERO SECTION STYLING --- */
-        .hero-section {
-            padding-bottom: 72px;
-            position: relative;
-            min-height: 80vh; 
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #000;
-            line-height: 1.2;
-            margin-bottom: 24px;
-        }
-
-        .hero-title span { color: #198754; }
-
-        .hero-subtitle {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 48px;
-            max-width: 90%;
-            line-height: 1.6;
-        }
-
-        .btn-search-job {
-            background-color: white;
-            color: #000;
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-decoration: none;
-            display: inline-block;
-            border: 1px solid #eee;
-        }
-
-        .login-link {
-            display: block;
-            margin-top: 24px;
-            color: #333;
-            font-size: 0.9rem;
-        }
-        
-        .login-link a {
-            font-weight: 700;
-            color: #000;
-            text-decoration: none;
-        }
-
-        /* Hero Images Desktop Defaults */
-        .hero-image-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-bg-shape {
-            position: absolute;
-            top: 60%; 
-            right: -10%;
-            transform: translateY(-50%);
-            width: 120%;    
-            height: 120%; 
-            background-image: url("{{ asset('image/Ellipse 1.png') }}");
-            background-size: contain; 
-            background-position: center right; 
-            background-repeat: no-repeat;
-            z-index: -1; 
-        }
-
-        .hero-img {
-            max-width: 130%; 
-            height: auto;
-            position: relative;
-            left: -10%; 
-        }
-
-        /* --- ABOUT SECTION STYLING --- */
-        .about-section {
-            position: relative;
-            z-index: 10; 
-            padding: 100px 0;
-            background-color: white;
-            overflow: hidden;
-        }
-
-        .about-heading {
-            font-weight: 700;
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-            color: #000;
-        }
-        
-        .about-heading span { color: #198754; }
-
-        .about-subheading {
-            color: #666;
-            font-weight: 600;
-            margin-bottom: 36px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .about-text {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 36px;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        .btn-about {
-            background-color: #198754;
-            color: white;
-            padding: 12px 36px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .about-img-side {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 500px;
-            width: auto;
-            max-width: 300px;
-            object-fit: cover;
-            z-index: 1; 
-            border-radius: 20px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        @media (max-width: 1400px) {
-            .about-img-side {
-                height: 350px; 
-                max-width: 200px;
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .about-img-side {
-                opacity: 0; 
-                pointer-events: none;
-            }
-        }
-
-        .about-img-left {
-            left: 5%;
-            transform: translateY(-50%) perspective(800px) rotateY(15deg) rotateX(-5deg);
-        }
-
-        .about-img-right {
-            right: 5%;
-            transform: translateY(-50%) perspective(800px) rotateY(-25deg) rotateX(-5deg);
-        }
-
-        .container.position-relative { z-index: 2; }
-        .vision-mission-section { padding-bottom: 100px; position: relative; z-index: 2; }
-
-        .vm-card {
-            background-color: #f8f9fa;
-            border-radius: 20px;
-            padding: 40px;
-            height: 100%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .vm-card:hover { 
-            transform: translateY(-5px); 
-        }
-
-        .vm-header { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            margin-bottom: 24px; 
-        }
-
-       .vm-icon-box {
-        width: 60px;
-        height: 60px;
-        background-color: #e8f5e9; 
-        color: #198754;          
-        border-radius: 12px;      
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;           /* Ukuran Icon */
-        margin-right: 15px;
-        flex-shrink: 0;            /* Agar icon tidak gepeng saat layar kecil */
-        transition: all 0.3s ease;
-    }
-
-    /* Efek Hover pada Card mempengaruhi Icon */
-    .vm-card:hover .vm-icon-box {
-        background-color: #198754; /* Background jadi hijau tua */
-        color: white;              /* Icon jadi putih */
-        transform: rotateY(360deg); /* Efek putar sedikit (opsional, aesthetic) */
-    }
-
-    /* Pastikan header tetap rapi */
-    .vm-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 24px;
-    }
-
-        .vm-title { 
-            font-size: 2rem; 
-            font-weight: 700; 
-            margin: 0; 
-            color: #000; 
-        }
-        
-        .vm-title span { 
-            color: #198754; 
-        }
-
-        .vm-text { 
-            color: #555; 
-            line-height: 1.6; 
-            font-size: 0.95rem; 
-        }
-
-        .vm-list { 
-            padding-left: 20px; 
-            margin: 0; 
-            color: #555; 
-        }
-
-        .vm-list li { 
-            margin-bottom: 12px; 
-            line-height: 1.6; 
-        }
-
-        /* Bersama Kita Section */
-        .bersama-kita-section { padding: 80px 0; background-color: #fff; }
-        .bersama-kita-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .bersama-kita-text { background-color: #03624C; color: white; padding: 60px 40px; border-radius: 20px; }
-        .bersama-kita-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 24px; line-height: 1.3; }
-        .bersama-kita-subtitle { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; opacity: 0.9; }
-        .bersama-kita-desc { font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px; }
-        .bersama-kita-img { border-radius: 20px; width: 100%; height: auto; object-fit: cover; }
-
-        .mulailah-karir-section {
-            padding: 60px 0 40px 0; 
-            background-color: #f8f9fa; 
-            text-align: center;
-            position: relative;
-        }
-
-        .mulailah-karir-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #000;
-        }
-
-        .mulailah-karir-subtitle {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* --- Search Bar Styling --- */
-        .job-search-container {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            border: 1px solid #eee;
-        }
-
-        .search-input-group {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 10px 15px;
-            border: 1px solid transparent;
-            transition: border-color 0.3s;
-        }
-
-        .search-input-group:focus-within {
-            border-color: #198754;
-            background: white;
-        }
-
-        .search-icon {
-            color: #198754;
-            margin-right: 10px;
-            font-size: 18px;
-        }
-
-        .form-control-clean {
-            border: none;
-            background: transparent;
-            width: 100%;
-            outline: none;
-            font-size: 14px;
-            color: #333;
-            padding: 0;
-        }
-
-        .form-control-clean::placeholder { color: #999; }
-
-        .btn-search-main {
-            background-color: #198754;
-            color: white;
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 8px;
-            border: none;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-
-        .btn-search-main:hover {
-            background-color: #146c43;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(25, 135, 84, 0.2);
-        }
-
-        /* Kategori Cepat (Pills) */
-        .quick-tags {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tag-pill {
-            background: white;
-            border: 1px solid #e0e0e0;
-            color: #666;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .tag-pill:hover {
-            border-color: #198754;
-            color: #198754;
-            background: #f0fdf4;
-        }
-
-        @media (max-width: 768px) {
-            .job-search-container {
-                flex-direction: column;
-                padding: 15px;
-            }
-            .search-input-group {
-                width: 100%;
-            }
-            .btn-search-main {
-                width: 100%;
-            }
-        }
-        .latest-vacancies-section { padding: 80px 0; background-color: white; }
-        .vacancy-card { border: none; border-radius: 20px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.08); height: 100%; display: flex; flex-direction: column; }
-        .vacancy-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
-        .vacancy-card-header { background-color: #f8f9fa; padding: 30px 24px; border-bottom: 1px solid #e9ecef; display: flex; align-items: flex-start; gap: 15px; flex: 0 0 auto; }
-        .vacancy-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; color: #000; min-height: 2.4em; display: flex; align-items: center; }
-        .vacancy-card-body { padding: 30px 24px; flex: 1 1 auto; display: flex; flex-direction: column; justify-content: space-between; }
-        .vacancy-map { width: 100%; height: 180px; background: linear-gradient(135deg, #b3e5fc 0%, #81d4fa 100%); border-radius: 12px; margin-bottom: 20px; }
-        .see-more-link { color: #198754; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; }
-
-        /* Recruitment*/
-        .recruitment-info-section { padding: 80px 0; background-color: #f8f9fa; }
-        .recruitment-info-title { font-size: 2rem; font-weight: 700; margin-bottom: 60px; text-align: center; color: #000; }
-        .info-card { background-color: white; border-radius: 16px; padding: 30px 24px; text-align: center; border: 1px solid #e9ecef; transition: transform 0.3s ease, border-color 0.3s ease; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
-        .info-card:hover { border-color: #198754; transform: translateY(-4px); }
-        .info-icon-large { width: 60px; height: 60px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
-        .info-card-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: #198754; text-transform: uppercase; letter-spacing: 0.5px; }
-        .info-card-date { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; color: #000; }
-        .info-card-desc { font-size: 0.85rem; color: #666; margin-bottom: 16px; line-height: 1.5; flex-grow: 1; }
-        .info-card-link { color: #198754; text-decoration: none; font-weight: 600; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 4px; }
-
-        /* Footer & Tenants */
-        .footer { background-color: #03624C; color: #b0b0b0; padding-top: 60px; padding-bottom: 30px; font-size: 14px; }
-        .footer-logo { height: 40px; margin-bottom: 24px; filter: brightness(0) invert(1); }
-        .footer-title { color: #ffffff; font-weight: 700; font-size: 16px; margin-bottom: 24px; text-transform: uppercase; }
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: #b0b0b0; text-decoration: none; }
-        .footer-links a:hover { color: #198754; padding-left: 5px; }
-        .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid #333; text-align: center; }
-        .tenants-section { padding: 40px 0; background-color: white; border-bottom: 1px solid #e9ecef; }
-        .tenants-title { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: #999; margin-bottom: 20px; text-align: center; }
-        .tenants-logos { display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; }
-        .tenant-logo { height: 40px; object-fit: contain; opacity: 0.7; transition: opacity 0.3s; }
-        .tenant-logo:hover { opacity: 1; }
-
-
-        @media (max-width: 991px) {
-            body {
-                padding-top: 90px;
-            }
-            
-            .navbar {
-                padding-top: 15px;
-                padding-bottom: 15px;
-            }
-
-            .navbar-collapse {
-                background-color: white;
-                padding: 20px;
-                border-top: 1px solid #eee;
-                margin-top: 10px;
-                max-height: 80vh;
-                overflow-y: auto;
-            }
-            
-            .nav-link { margin-right: 0; margin-bottom: 10px; }
-            .btn-register { width: 100%; text-align: center; display: block; margin-top: 15px; }
-
-           
-            .hero-section {
-                text-align: center;
-                padding-bottom: 40px;
-                display: block; 
-                min-height: auto;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-                margin-top: 20px;
-            }
-            /* Adjust Grid Layouts */
-            .bersama-kita-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .bersama-kita-text {
-                padding: 30px 20px;
-            }
-
-            /* Font Size Adjustments */
-            .about-heading, .mulailah-karir-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    @vite(['resources/css/app.scss', 'resources/js/app.js'])
 </head>
-<body>
+<body class="has-navbar">
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-transition navbar-transparent">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                <img src="{{ asset('image/logoimip.png') }}" alt="IMIP Logo">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{{ asset('image/logoimip.png') }}" alt="IMIP Logo" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">ABOUT</a></li>
-                    <a class="btn-register" href="{{ route('login') }}">REGISTER/LOGIN</a>
+                <ul class="navbar-nav align-items-center gap-lg-4">
+                    <li class="nav-item"><a class="nav-link fw-bold text-dark text-uppercase" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-dark text-uppercase" href="#">About</a></li>
+                    <li class="nav-item mt-3 mt-lg-0">
+                        <a class="btn-imip-outline d-block d-lg-inline-block text-center text-decoration-none" href="{{ route('login') }}">
+                            Register/Login
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="hero-section">
+   <section class="section-padding d-flex align-items-center position-relative" style="min-height: 80vh;">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center text-center text-lg-start">
                 
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <h1 class="hero-title">
+                <div class="col-lg-6 position-relative" style="z-index: 2;">
+                    <h1 class="display-4 fw-bold text-dark mb-4 lh-sm hero-title">
                         Membangun Masa Depan<br>
-                        Industri Indonesia di <span>IMIP</span>
+                        Industri Indonesia di <span class="text-imip-primary">IMIP</span>
                     </h1>
-                    <p class="hero-subtitle">
+                    <p class="fs-10 text-muted mb-5 lh-lg">
                         Bergabunglah dengan tim kelas dunia di kawasan industri terintegrasi terbesar. 
                         Jadilah bagian dari transformasi hilirisasi mineral bangsa.
                     </p>
-                    <div><a href="#" class="btn-search-job">Cari Lowongan</a></div>
-                    <span class="login-link">Sudah punya akun? <a href="#">Login</a></span>
-                </div>
-
-                <div class="col-lg-6 d-none d-lg-block">
-                    <div class="hero-image-wrapper">
-                        <div class="hero-bg-shape"></div>
-                        <img src="{{ asset('image/Orang-orangan.png') }}" alt="IMIP Workers" class="hero-img img-fluid">
+                    <div class="d-flex flex-column flex-lg-row gap-3 justify-content-center justify-content-lg-start align-items-center">
+                        <a href="#vacancies" class="btn-imip-green shadow text-decoration-none">Cari Lowongan</a>
+                        <span class="text-dark small fw-bold">
+                            Sudah punya akun? <a href="#" class="text-imip-primary text-decoration-none">Login</a>
+                        </span>
                     </div>
                 </div>
 
+                <div class="col-lg-6 hero-img-container d-none d-lg-block">
+                    <img src="{{ asset('image/Ellipse 1.png') }}" class="hero-blob" alt="Background Shape">
+                    <img src="{{ asset('image/Orang-orangan.png') }}" class="hero-figure" alt="IMIP Workers">
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section class="about-section">
+    <section class="section-padding bg-white position-relative overflow-hidden">
+        
         <img src="{{ asset('image/kiri.jpg') }}" 
-             class="about-img-side about-img-left d-none d-lg-block" 
+             class="about-floating-img img-left d-none d-lg-block" 
              alt="Factory Left">
 
         <img src="{{ asset('image/kanan.jpg') }}" 
-             class="about-img-side about-img-right d-none d-lg-block" 
+             class="about-floating-img img-right d-none d-lg-block" 
              alt="Factory Right">
 
-        <div class="container position-relative">
+        <div class="container position-relative" style="z-index: 2;">
             <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="about-heading">
-                        About <span>PT Indonesia Morowali<br>Industrial Park</span>
-                    </h2>
-                    <h5 class="about-subheading">Dari Morowali untuk Indonesia</h5>
-                    
-                    <p class="about-text">
+                <div class="col-lg-8 text-center bg-white bg-opacity-10 p-rounded-4 backdrop-blur">
+                    <h2 class="fw-bold display-6 mb-2">About <span class="text-imip-primary">PT Indonesia Morowali<br>Industrial Park</span></h2>
+                    <h5 class="text-uppercase text-muted fw-bold ls-1 mb-4" style="letter-spacing: 2px;">Dari Morowali untuk Indonesia</h5>
+                    <p class="text-muted lh-lg mb-4">
                         Selamat datang di Kawasan Industri Indonesia Morowali Industrial Park (IMIP). Dengan fasilitas canggih dan teknologi terbaru, Kawasan Industri IMIP berdedikasi untuk mengolah sumber daya nikel yang melimpah menjadi produk berkualitas tinggi yang mendukung industri global. Di sini, kami tidak hanya berfokus pada efisiensi dan inovasi, tetapi juga keberlanjutan dan tanggung jawab lingkungan. Bergabunglah dengan kami, dan saksikan bagaimana IMIP mengubah potensi alam menjadi kemajuan nyata dan berdampak positif bagi masa depan.
                     </p>
-
-                    <a href="#" class="btn-about">Read More</a>
+                    <a href="#" class="btn-imip-green text-decoration-none">Read More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="vision-mission-section">
+    <section class="section-padding bg-light-gray">
         <div class="container">
-            <div class="row g-4"> 
-                
+            <div class="row g-4">
                 <div class="col-lg-6">
-                    <div class="vm-card">
-                        <div class="vm-header">
-                            <div class="vm-icon-box">
-                                <i class="bi bi-eye"></i>
-                            </div>
-                            
-                            <h3 class="vm-title">Our <span>Vision</span></h3>
+                    <div class="hover-card p-5 border-0 shadow-sm h-100">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="icon-box me-3"><i class="bi bi-eye"></i></div>
+                            <h3 class="fw-bold m-0">Our <span class="text-imip-primary">Vision</span></h3>
                         </div>
-                        <p class="vm-text">
+                        <p class="text-muted lh-lg mb-0">
                             Menjadi Kawasan Industri Berbasis Mineral Terbaik di Dunia dengan Ekosistem Bisnis yang Bernilai Tinggi, Terintegrasi, Nyaman, Aman dan Berwawasan Lingkungan.
                         </p>
                     </div>
                 </div>
-
                 <div class="col-lg-6">
-                    <div class="vm-card">
-                        <div class="vm-header">
-                            <div class="vm-icon-box">
-                                <i class="bi bi-bullseye"></i>
-                            </div>
-                            
-                            <h3 class="vm-title">Our <span>Mission</span></h3>
+                    <div class="hover-card p-5 border-0 shadow-sm h-100">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="icon-box me-3"><i class="bi bi-bullseye"></i></div>
+                            <h3 class="fw-bold m-0">Our <span class="text-imip-primary">Mission</span></h3>
                         </div>
-                        <ul class="vm-list">
-                            <li>Membangun ekosistem bisnis yang bernilai bagi pelanggan di dalam kawasan dengan layanan dan produk yang terpadu, unggul, dan andal.</li>
-                            <li>Membangun kemitraan yang bernilai, saling menguntungkan dan berkembang bagi penyedia produk dan jasa dengan komitmen tinggi.</li>
+                        <ul class="text-muted lh-lg mb-0 ps-3">
+                            <li class="mb-2">Membangun ekosistem bisnis yang bernilai bagi pelanggan di dalam kawasan dengan layanan dan produk yang terpadu, unggul, dan andal.</li>
+                            <li class="mb-2">Membangun kemitraan yang bernilai, saling menguntungkan dan berkembang bagi penyedia produk dan jasa dengan komitmen tinggi.</li>
                             <li>Mengembangkan lingkungan kawasan yang ramah, lestari dan menjaga keseimbangan ekologis melalui kolaborasi dan inovasi.</li>
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Added Bersama Kita Raih Kesuksesan section -->
-    <section class="bersama-kita-section">
+    <section class="section-padding bg-white">
         <div class="container">
-            <div class="bersama-kita-content">
-                <div class="bersama-kita-text">
-                    <h6 class="bersama-kita-subtitle">Partnership</h6>
-                    <h2 class="bersama-kita-title">Bersama Kita Raih Kesuksesan</h2>
-                    <p class="bersama-kita-desc">
-                        Kabupaten Morowali memiliki potensi sumber daya alam yang cukup besar sebagaimana properti untuk pengembangan industri berbasis nilai tambah. Sebagaimana halnya industri berbasis nikel. Untuk menunjang kegiatan ekonomi di kawasan serta prasarana industri sebagai produk-produk turunan dari industri pengolahan nikel memiliki daya saing.
-                    </p>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="bg-imip-dark text-white p-5 rounded-4 shadow">
+                        <h6 class="text-uppercase mb-3 opacity-75" style="letter-spacing: 2px;">Partnership</h6>
+                        <h2 class="fw-bold mb-4">Bersama Kita Raih Kesuksesan</h2>
+                        <p class="lh-lg opacity-90 mb-0">
+                            Kabupaten Morowali memiliki potensi sumber daya alam yang cukup besar sebagaimana properti untuk pengembangan industri berbasis nilai tambah. Sebagaimana halnya industri berbasis nikel. Untuk menunjang kegiatan ekonomi di kawasan serta prasarana industri sebagai produk-produk turunan dari industri pengolahan nikel memiliki daya saing.
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <img src="{{ asset('image/Tenant.png') }}" alt="Partnership" class="bersama-kita-img">
+                <div class="col-lg-6">
+                    <img src="{{ asset('image/Tenant.png') }}" alt="Partnership" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="mulailah-karir-section">
+    <section class="section-padding bg-light-gray text-center" id="vacancies">
         <div class="container">
-            <h2 class="mulailah-karir-title">Temukan Karir Impian Anda</h2>
-            <p class="mulailah-karir-subtitle">
-                Bergabunglah bersama ribuan profesional lainnya membangun industri masa depan
-            </p>
+            <h2 class="fw-bold mb-2">Temukan Karir Impian Anda</h2>
+            <p class="text-muted mb-5">Bergabunglah bersama ribuan profesional lainnya membangun industri masa depan</p>
 
-            <div class="job-search-container">
-                <div class="search-input-group">
-                    <span class="search-icon">🔍</span>
+            <div class="job-search-container d-flex gap-3 align-items-center mb-4">
+                <div class="search-input-group flex-grow-1 d-flex align-items-center">
+                    <i class="bi bi-search text-imip-primary me-2 fs-5"></i>
                     <input type="text" class="form-control-clean" placeholder="Cari posisi (mis: Engineer, Admin)...">
                 </div>
-
-                <div class="search-input-group border-start-lg">
-                    <span class="search-icon">📍</span>
+                <div class="search-input-group flex-grow-1 d-flex align-items-center border-start-lg">
+                    <i class="bi bi-geo-alt text-imip-primary me-2 fs-5"></i>
                     <select class="form-control-clean" style="cursor: pointer;">
                         <option value="" selected>Semua Lokasi</option>
                         <option value="morowali">Morowali</option>
@@ -672,250 +159,216 @@
                         <option value="jakarta">Jakarta</option>
                     </select>
                 </div>
-
-                <button class="btn-search-main">Cari Lowongan</button>
+                <button class="btn-imip-green btn-search-mobile-full text-nowrap shadow-sm">Cari Lowongan</button>
             </div>
 
-            <div class="quick-tags">
-                <a href="#" class="tag-pill">Engineering</a>
-                <a href="#" class="tag-pill">Finance</a>
-                <a href="#" class="tag-pill">HR & GA</a>
-                <a href="#" class="tag-pill">Safety (HSE)</a>
-                <a href="#" class="tag-pill">Internship</a>
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+                <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">Engineering</a>
+                <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">Finance</a>
+                <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">HR & GA</a>
+                <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">Safety (HSE)</a>
+                <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">Internship</a>
             </div>
-        </div>
-    </section>
-
-    <section class="latest-vacancies-section pt-4"> <div class="container">
+            
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h5 class="fw-bold m-0">Lowongan Terbaru <span class="text-success">(3)</span></h5>
-                <a href="#" class="text-decoration-none text-muted small">Lihat Semua ></a>
+                <h5 class="fw-bold m-0">Lowongan Terbaru <span class="text-imip-primary">(3)</span></h5>
+                <a href="#" class="text-decoration-none text-muted small fw-bold">Lihat Semua ></a>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    </div>
-                </div>
-        </div>
-    </section>
-
-<section class="latest-vacancies-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Lowongan Terbaru</h2>
-                <p class="text-muted">Bergabunglah dengan tim kami di berbagai posisi</p>
-            </div>
-
-            <div class="row g-4"> 
+            <div class="row g-4 text-start">
                 
                 <div class="col-lg-4 col-md-6">
-                    <div class="vacancy-card">
-                        <div class="vacancy-card-header">
-                            <div class="vacancy-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                                </svg>
-                            </div>
+                    <div class="hover-card d-flex flex-column h-100">
+                        <div class="p-4 bg-light border-bottom d-flex gap-3 align-items-center">
+                            <i class="bi bi-gear fs-3 text-imip-primary"></i>
                             <div>
-                                <h5 class="vacancy-title">Engineering & Konstruksi</h5>
-                                <p class="vacancy-location">
-                                    <span>📍</span> Morowali
-                                </p>
+                                <h6 class="fw-bold mb-1">Engineering & Konstruksi</h6>
+                                <small class="text-muted"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Morowali</small>
                             </div>
                         </div>
-                        <div class="vacancy-card-body">
-                            <div class="vacancy-map" style="background-image: url('{{ asset('image/map-placeholder.png') }}'); background-color: #e0f2f1;"></div>
-                            <a href="#" class="see-more-link">See More →</a>
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+                            <div class="bg-info-subtle rounded-3 mb-3 w-100 position-relative overflow-hidden" style="height: 150px;">
+                                <img src="{{ asset('image/map-placeholder.png') }}" class="w-100 h-100 object-fit-cover opacity-50" alt="Map">
+                            </div>
+                            <a href="#" class="text-imip-primary fw-bold text-decoration-none mt-auto d-flex align-items-center gap-2">See More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                    <div class="vacancy-card">
-                        <div class="vacancy-card-header">
-                            <div class="vacancy-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M2 22h20M2 11l5-5 5 5 5-5 5 5M4 22V11M20 22V11M12 22v-6"></path>
-                                </svg>
-                            </div>
+                    <div class="hover-card d-flex flex-column h-100">
+                        <div class="p-4 bg-light border-bottom d-flex gap-3 align-items-center">
+                            <i class="bi bi-tools fs-3 text-imip-primary"></i>
                             <div>
-                                <h5 class="vacancy-title">Operasional Smelter</h5>
-                                <p class="vacancy-location">
-                                    <span>📍</span> Morowali
-                                </p>
+                                <h6 class="fw-bold mb-1">Operasional Smelter</h6>
+                                <small class="text-muted"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Morowali</small>
                             </div>
                         </div>
-                        <div class="vacancy-card-body">
-                            <div class="vacancy-map" style="background-image: url('{{ asset('image/map-placeholder.png') }}'); background-color: #e0f2f1;"></div>
-                            <a href="#" class="see-more-link">See More →</a>
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+                            <div class="bg-info-subtle rounded-3 mb-3 w-100 position-relative overflow-hidden" style="height: 150px;">
+                                <img src="{{ asset('image/map-placeholder.png') }}" class="w-100 h-100 object-fit-cover opacity-50" alt="Map">
+                            </div>
+                            <a href="#" class="text-imip-primary fw-bold text-decoration-none mt-auto d-flex align-items-center gap-2">See More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                    <div class="vacancy-card">
-                        <div class="vacancy-card-header">
-                            <div class="vacancy-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                                </svg>
-                            </div>
+                    <div class="hover-card d-flex flex-column h-100">
+                        <div class="p-4 bg-light border-bottom d-flex gap-3 align-items-center">
+                            <i class="bi bi-truck fs-3 text-imip-primary"></i>
                             <div>
-                                <h5 class="vacancy-title">Logistik & Alat Berat</h5>
-                                <p class="vacancy-location">
-                                    <span>📍</span> Kendari
-                                </p>
+                                <h6 class="fw-bold mb-1">Logistik & Alat Berat</h6>
+                                <small class="text-muted"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Kendari</small>
                             </div>
                         </div>
-                        <div class="vacancy-card-body">
-                            <div class="vacancy-map" style="background-image: url('{{ asset('image/map-placeholder.png') }}'); background-color: #e0f2f1;"></div>
-                            <a href="#" class="see-more-link">See More →</a>
+                        <div class="p-4 flex-grow-1 d-flex flex-column">
+                            <div class="bg-info-subtle rounded-3 mb-3 w-100 position-relative overflow-hidden" style="height: 150px;">
+                                <img src="{{ asset('image/map-placeholder.png') }}" class="w-100 h-100 object-fit-cover opacity-50" alt="Map">
+                            </div>
+                            <a href="#" class="text-imip-primary fw-bold text-decoration-none mt-auto d-flex align-items-center gap-2">See More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
 
-            </div> </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Added Recruitment Information section -->
-    <section class="recruitment-info-section">
+    <section class="section-padding bg-white">
         <div class="container">
-            <h2 class="recruitment-info-title">Recruitment Information</h2>
+            <h2 class="fw-bold text-center mb-5">Recruitment Information</h2>
             <div class="row g-4">
-                <!-- Info Card 1 -->
+                
                 <div class="col-lg-4 col-md-6">
-                    <div class="info-card">
-                        <div class="info-icon-large">📱</div>
-                        <h6 class="info-card-title">PENDAFTARAN DIBUKA</h6>
-                        <p class="info-card-date">28 - 06 - 2023</p>
-                        <p class="info-card-desc">
-                            Internet Posting Rekrutmen yang terus diperbaharui
-                        </p>
-                        <a href="#" class="info-card-link">See More →</a>
+                    <div class="hover-card p-4 text-center d-flex flex-column h-100">
+                        <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-phone"></i></div>
+                        <h6 class="text-imip-primary fw-bold mb-2">PENDAFTARAN DIBUKA</h6>
+                        <h5 class="fw-bold mb-3">28 - 06 - 2023</h5>
+                        <p class="text-muted small mb-4 flex-grow-1">Internet Posting Rekrutmen yang terus diperbaharui</p>
+                        <a href="#" class="text-imip-primary fw-bold text-decoration-none">See More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Info Card 2 -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="info-card">
-                        <div class="info-icon-large">📋</div>
-                        <h6 class="info-card-title">SELEKSI ADMINISTRASI</h6>
-                        <p class="info-card-date">28 - 06 - 2023</p>
-                        <p class="info-card-desc">
-                            Internet Posting Rekrutmen yang terus diperbaharui
-                        </p>
-                        <a href="#" class="info-card-link">See More →</a>
+                    <div class="hover-card p-4 text-center d-flex flex-column h-100">
+                        <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-clipboard-check"></i></div>
+                        <h6 class="text-imip-primary fw-bold mb-2">SELEKSI ADMINISTRASI</h6>
+                        <h5 class="fw-bold mb-3">28 - 06 - 2023</h5>
+                        <p class="text-muted small mb-4 flex-grow-1">Internet Posting Rekrutmen yang terus diperbaharui</p>
+                        <a href="#" class="text-imip-primary fw-bold text-decoration-none">See More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Info Card 3 -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="info-card">
-                        <div class="info-icon-large">⚠️</div>
-                        <h6 class="info-card-title">PENTING</h6>
-                        <p class="info-card-date">Penting</p>
-                        <p class="info-card-desc">
-                            Protokol Kesehatan Sesuai dengan Peraturan Pemerintah
-                        </p>
-                        <a href="#" class="info-card-link">See More →</a>
+                    <div class="hover-card p-4 text-center d-flex flex-column h-100">
+                        <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-exclamation-triangle"></i></div>
+                        <h6 class="text-imip-primary fw-bold mb-2">PENTING</h6>
+                        <h5 class="fw-bold mb-3">Protokol Kesehatan</h5>
+                        <p class="text-muted small mb-4 flex-grow-1">Protokol Kesehatan Sesuai dengan Peraturan Pemerintah</p>
+                        <a href="#" class="text-imip-primary fw-bold text-decoration-none">See More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Info Card 4 -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="info-card">
-                        <div class="info-icon-large">📞</div>
-                        <h6 class="info-card-title">LAYANAN NOTIFIKASI WHATSAPP</h6>
-                        <p class="info-card-date">Tersedia</p>
-                        <p class="info-card-desc">
-                            Dapatkan notifikasi real-time untuk setiap update rekrutmen
-                        </p>
-                        <a href="#" class="info-card-link">See More →</a>
+                    <div class="hover-card p-4 text-center d-flex flex-column h-100">
+                        <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-whatsapp"></i></div>
+                        <h6 class="text-imip-primary fw-bold mb-2">NOTIFIKASI WHATSAPP</h6>
+                        <h5 class="fw-bold mb-3">Tersedia</h5>
+                        <p class="text-muted small mb-4 flex-grow-1">Dapatkan notifikasi real-time untuk setiap update rekrutmen</p>
+                        <a href="#" class="text-imip-primary fw-bold text-decoration-none">See More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Info Card 5 -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="info-card">
-                        <div class="info-icon-large">📅</div>
-                        <h6 class="info-card-title">JADWAL TEST</h6>
-                        <p class="info-card-date">28 - 06 - 2023</p>
-                        <p class="info-card-desc">
-                            Mengikuti Perkembangan Kebutuhan Rekrutmen Kami Secara Berkala
-                        </p>
-                        <a href="#" class="info-card-link">See More →</a>
+                    <div class="hover-card p-4 text-center d-flex flex-column h-100">
+                        <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-calendar-event"></i></div>
+                        <h6 class="text-imip-primary fw-bold mb-2">JADWAL TEST</h6>
+                        <h5 class="fw-bold mb-3">28 - 06 - 2023</h5>
+                        <p class="text-muted small mb-4 flex-grow-1">Mengikuti Perkembangan Kebutuhan Rekrutmen Kami Secara Berkala</p>
+                        <a href="#" class="text-imip-primary fw-bold text-decoration-none">See More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Info Card 6 -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="info-card">
-                        <div class="info-icon-large">✉️</div>
-                        <h6 class="info-card-title">KRITIK & SARAN</h6>
-                        <p class="info-card-date">Setiap Saat</p>
-                        <p class="info-card-desc">
-                            Hubungi Kami Untuk Saran dan Masukan yang Berharga
-                        </p>
-                        <a href="#" class="info-card-link">See More →</a>
+                    <div class="hover-card p-4 text-center d-flex flex-column h-100">
+                        <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-envelope"></i></div>
+                        <h6 class="text-imip-primary fw-bold mb-2">KRITIK & SARAN</h6>
+                        <h5 class="fw-bold mb-3">Setiap Saat</h5>
+                        <p class="text-muted small mb-4 flex-grow-1">Hubungi Kami Untuk Saran dan Masukan yang Berharga</p>
+                        <a href="#" class="text-imip-primary fw-bold text-decoration-none">See More <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Updated tenants section with proper styling and tenant logos -->
-    <section class="tenants-section">
-        <div class="container">
-            <p class="tenants-title">50+ Tenant yang ada di kawasan IMIP</p>
-            <div class="tenants-logos">
-                <img src="{{ asset('image/image 24.png') }}" alt="Tenant 1" class="tenant-logo">
-                <img src="{{ asset('image/image 25.png') }}" alt="Tenant 2" class="tenant-logo">
-                <img src="{{ asset('image/image 26.png') }}" alt="Tenant 3" class="tenant-logo">
-                <img src="{{ asset('image/image 27.png') }}" alt="Tenant 4" class="tenant-logo">
-                <img src="{{ asset('image/image 28.png') }}" alt="Tenant 5" class="tenant-logo">
-                <img src="{{ asset('image/image 29.png') }}" alt="Tenant 6" class="tenant-logo">
-                <img src="{{ asset('image/image 30.png') }}" alt="Tenant 7" class="tenant-logo">
-                <img src="{{ asset('image/image 31.png') }}" alt="Tenant 8" class="tenant-logo">
+    <section class="py-5 border-top border-bottom bg-white">
+        <div class="container text-center">
+            <p class="text-uppercase fw-bold text-muted small mb-4 ls-1">50+ Tenant yang ada di kawasan IMIP</p>
+            <div class="d-flex justify-content-center flex-wrap gap-4 align-items-center">
+                <img src="{{ asset('image/image 24.png') }}" class="tenant-logo" alt="Tenant">
+                <img src="{{ asset('image/image 25.png') }}" class="tenant-logo" alt="Tenant">
+                <img src="{{ asset('image/image 26.png') }}" class="tenant-logo" alt="Tenant">
+                <img src="{{ asset('image/image 27.png') }}" class="tenant-logo" alt="Tenant">
+                <img src="{{ asset('image/image 28.png') }}" class="tenant-logo" alt="Tenant">
+                <img src="{{ asset('image/image 29.png') }}" class="tenant-logo" alt="Tenant">
+                <img src="{{ asset('image/image 30.png') }}" class="tenant-logo" alt="Tenant">
+                <img src="{{ asset('image/image 31.png') }}" class="tenant-logo" alt="Tenant">
             </div>
         </div>
     </section>
-    
-    <footer class="footer">
+
+    <footer class="footer-imip">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <img src="{{ asset('image/logoimip.png') }}" alt="IMIP Logo" class="footer-logo">
-                    <p>Kawasan Industri Terintegrasi Terbesar di Indonesia.</p>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <img src="{{ asset('image/logoimip.png') }}" alt="Logo" class="mb-4" style="filter: brightness(0) invert(1); height: 40px;">
+                    <p class="small opacity-75">Kawasan Industri Terintegrasi Terbesar di Indonesia.</p>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h5 class="footer-title">Perusahaan</h5>
-                    <ul class="footer-links">
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-white text-uppercase fw-bold mb-3">Perusahaan</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
                         <li><a href="#">Tentang Kami</a></li>
                         <li><a href="#">Karir</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h5 class="footer-title">Lowongan</h5>
-                    <ul class="footer-links">
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-white text-uppercase fw-bold mb-3">Lowongan</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
                         <li><a href="#">Professional</a></li>
                         <li><a href="#">Magang</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <h5 class="footer-title">Hubungi Kami</h5>
-                    <ul class="footer-links">
+                <div class="col-lg-4">
+                    <h6 class="text-white text-uppercase fw-bold mb-3">Hubungi Kami</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small opacity-75">
                         <li>Fatufia, Bahodopi, Morowali</li>
                         <li>recruitment@imip.co.id</li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="border-top border-secondary mt-5 pt-4 text-center small opacity-50">
                 &copy; 2025 PT IMIP. All Rights Reserved.
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { // Jika scroll lebih dari 50px
+                navbar.classList.remove('navbar-transparent');
+                navbar.classList.add('navbar-scrolled');
+            } else { // Jika kembali ke paling atas
+                navbar.classList.add('navbar-transparent');
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
