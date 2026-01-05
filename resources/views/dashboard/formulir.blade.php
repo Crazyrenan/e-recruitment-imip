@@ -2,66 +2,76 @@
 
 @section('content')
 
+{{-- 1. STYLING KHUSUS HALAMAN INI --}}
 <style>
     /* --- HEADER STYLES --- */
-    .form-header {
-        background-color: white;
+    .form-header-modern {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fcfb 100%);
         border-radius: 16px;
         padding: 30px 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 30px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        border: 1px solid rgba(0,0,0,0.03);
+        position: relative;
+        overflow: hidden;
+        height: 100%; /* Agar tinggi sama dengan card sebelah */
+    }
+    
+    .form-header-modern::before {
+        content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 6px; background-color: #03624C;
     }
 
-    .form-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #000;
-        margin-bottom: 5px;
-    }
+    .form-title { font-size: 1.8rem; font-weight: 700; color: #000; margin-bottom: 5px; }
+    .form-subtitle { color: #666; font-size: 0.95rem; margin: 0; }
 
-    .form-subtitle {
-        color: #666;
-        font-size: 0.95rem;
-        margin: 0;
-    }
-
-    .header-illustration {
-        background-color: #e8f5e9;
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
+    /* --- SHORTCUT GUIDE CARD --- */
+    .guide-shortcut-card {
+        background-color: #e8f5e9; /* Hijau Muda */
+        border: 1px solid #c8e6c9;
+        border-radius: 16px; /* Samakan radius */
+        padding: 25px;
         display: flex;
         align-items: center;
-        justify-content: center;
-        position: relative;
+        gap: 20px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        height: 100%; /* Agar tinggi fill */
     }
 
-    /* --- LEGEND & CONTENT STYLES --- */
+    .guide-shortcut-card:hover {
+        background-color: #dcedc8;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .guide-icon-box {
+        width: 50px; height: 50px;
+        background-color: #198754;
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 1.5rem; flex-shrink: 0;
+    }
+
+    .guide-text h6 { color: #198754; font-weight: 700; margin: 0; font-size: 1rem; }
+    .guide-text p { color: #555; font-size: 0.85rem; margin: 0; line-height: 1.2; }
+    .guide-arrow { color: #198754; font-size: 1.2rem; margin-left: auto; }
+
+    /* --- LEGEND STYLES --- */
     .info-box {
-        background-color: #f8f9fa;
+        background-color: #fff;
+        border: 1px solid #eee;
         border-left: 4px solid #666;
         padding: 20px;
         border-radius: 8px;
         margin-bottom: 30px;
     }
 
-    .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
-        font-size: 0.9rem;
-        color: #555;
-    }
-
     /* --- FORM ITEM CARD STYLES --- */
     .form-list-container {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+        display: flex; flex-direction: column; gap: 15px;
     }
 
     .form-item {
@@ -83,103 +93,83 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
 
-    .item-left {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
+    .item-left { display: flex; align-items: center; gap: 15px; }
+    .status-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+    .item-title { font-weight: 600; font-size: 1rem; color: #333; }
+    .status-icon { font-size: 1.5rem; }
 
-    .status-dot {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        display: inline-block;
-    }
+    /* States */
+    .form-item.incomplete { border-left: 5px solid #dc3545; }
+    .form-item.incomplete .status-dot { background-color: #dc3545; box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.1); }
+    .form-item.incomplete .status-icon { color: #dc3545; }
+    
+    .form-item.complete { border-left: 5px solid #198754; }
+    .form-item.complete .status-dot { background-color: #198754; box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1); }
+    .form-item.complete .status-icon { color: #198754; }
 
-    .item-title {
-        font-weight: 600;
-        font-size: 1rem;
-        color: #333;
-    }
-
-    .status-icon {
-        font-size: 1.5rem;
-    }
-
-    /* --- STATE: INCOMPLETE (RED) --- */
-    .form-item.incomplete {
-        border-left: 5px solid #dc3545; /* Red Border */
-    }
-    .form-item.incomplete .status-dot {
-        background-color: #dc3545;
-        box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.1);
-    }
-    .form-item.incomplete .status-icon {
-        color: #dc3545;
-    }
-    .form-item.incomplete:hover {
-        background-color: #fff5f5;
-    }
-
-    /* --- STATE: COMPLETE (GREEN) --- */
-    .form-item.complete {
-        border-left: 5px solid #198754; /* Green Border */
-    }
-    .form-item.complete .status-dot {
-        background-color: #198754;
-        box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1);
-    }
-    .form-item.complete .status-icon {
-        color: #198754;
-    }
-    .form-item.complete:hover {
-        background-color: #f0fff4;
-    }
-
-    /* --- SIMULATION BUTTON --- */
+    /* Sim Button */
     .sim-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #0d6efd;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        font-size: 0.85rem;
-        z-index: 9999;
-        cursor: pointer;
+        position: fixed; bottom: 30px; right: 30px; background-color: #0d6efd; color: white;
+        border: none; padding: 10px 20px; border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-size: 0.85rem; z-index: 9999; cursor: pointer;
     }
     .sim-btn:hover { background-color: #0b5ed7; }
 </style>
 
-<div class="form-header">
-    <div>
-        <h1 class="form-title">Formulir <span style="color: #03624C;">Registrasi</span></h1>
-        <p class="form-subtitle">Formulir Registrasi Calon Karyawan</p>
+{{-- 2. HEADER BARU (LAYOUT 2 KOLOM) --}}
+<div class="row g-4 align-items-stretch mb-4">
+    {{-- Kolom Kiri: Judul --}}
+    <div class="col-lg-8">
+        <div class="form-header-modern h-100">
+            <div>
+                <h1 class="form-title">Formulir <span style="color: #03624C;">Registrasi</span></h1>
+                <p class="form-subtitle">Lengkapi 15 data di bawah ini untuk melanjutkan proses seleksi.</p>
+            </div>
+        </div>
     </div>
-    <div class="header-illustration">
-        <i class="bi bi-pencil-square" style="font-size: 30px; color: #198754;"></i>
+
+    {{-- Kolom Kanan: Shortcut Panduan --}}
+    <div class="col-lg-4">
+        <a href="{{ route('dashboard.panduan') }}" class="guide-shortcut-card h-100 text-decoration-none">
+            <div class="guide-icon-box">
+                <i class="bi bi-book-half"></i>
+            </div>
+            <div class="guide-text">
+                <h6>Bingung mengisi?</h6>
+                <p>Baca Panduan Registrasi di sini</p>
+            </div>
+            <i class="bi bi-arrow-right-circle guide-arrow"></i>
+        </a>
     </div>
 </div>
 
-<div class="info-box">
-    <p class="mb-3 fw-bold">Silahkan isi formulir registrasi di bawah ini sampai list warna <span class="text-danger">Merah</span> menjadi Warna <span class="text-success">Hijau</span></p>
-    
-    <div class="legend-item">
-        <i class="bi bi-x-square-fill text-danger fs-5"></i>
-        <span>Formulir <strong>BELUM</strong> terisi secara lengkap!</span>
-    </div>
-    <div class="legend-item">
-        <i class="bi bi-check-square-fill text-success fs-5"></i>
-        <span>Formulir <strong>SUDAH</strong> terisi secara lengkap!</span>
+{{-- 3. LEGEND / INFO --}}
+<div class="info-box shadow-sm border-0">
+    <div class="d-flex align-items-start gap-3">
+        <i class="bi bi-info-circle-fill fs-4 text-secondary mt-1"></i>
+        <div>
+            <p class="mb-2 fw-bold text-dark">Instruksi Pengisian:</p>
+            <p class="mb-3 text-muted small">Pastikan semua formulir berubah status menjadi <span class="text-success fw-bold">HIJAU (Lengkap)</span> sebelum menunggu proses verifikasi.</p>
+            
+            <div class="d-flex gap-4 flex-wrap">
+                <div class="d-flex align-items-center gap-2 small">
+                    <i class="bi bi-x-square-fill text-danger"></i>
+                    <span>Belum Lengkap</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 small">
+                    <i class="bi bi-check-square-fill text-success"></i>
+                    <span>Sudah Lengkap</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+{{-- 4. DAFTAR FORMULIR (15 ITEM) --}}
 <div class="form-list-container" id="formList">
 
-   <a href="{{ route('formulir.personal') }}" style="text-decoration: none; color: inherit;">
+    {{-- 1. Personal --}}
+    <a href="{{ route('formulir.personal') }}" class="text-decoration-none text-dark">
         <div class="form-item incomplete">
             <div class="item-left">
                 <span class="status-dot"></span>
@@ -189,15 +179,18 @@
         </div>
     </a>
 
-    <a href="{{ route('formulir.permintaan') }}" style="text-decoration: none; color: inherit;">
+    {{-- 2. Permintaan --}}
+    <a href="{{ route('formulir.permintaan') }}" class="text-decoration-none text-dark">
         <div class="form-item incomplete">
             <div class="item-left">
                 <span class="status-dot"></span>
-                <span class="item-title">Formulir Data Permintaan</span> </div>
+                <span class="item-title">Formulir Data Permintaan</span> 
+            </div>
             <i class="bi bi-file-earmark-x status-icon"></i>
         </div>
     </a>
 
+    {{-- 3. Pendidikan --}}
     <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
@@ -206,6 +199,7 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
+    {{-- 4. Alamat --}}
     <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
@@ -214,6 +208,7 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
+    {{-- 5. Pekerjaan --}}
     <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
@@ -222,7 +217,8 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
-    <a href="{{ route('formulir.kontak') }}" style="text-decoration: none; color: inherit;">
+    {{-- 6. Kontak --}}
+    <a href="{{ route('formulir.kontak') }}" class="text-decoration-none text-dark">
         <div class="form-item incomplete">
             <div class="item-left">
                 <span class="status-dot"></span>
@@ -232,6 +228,7 @@
         </div>
     </a>
 
+    {{-- 7. Kontak Darurat --}}
     <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
@@ -240,6 +237,7 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
+    {{-- 8. Ahli Waris --}}
     <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
@@ -248,7 +246,8 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
     
-     <div class="form-item incomplete">
+    {{-- 9. Keluarga --}}
+    <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
             <span class="item-title">Formulir Data Keluarga</span>
@@ -256,7 +255,8 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
-     <div class="form-item incomplete">
+    {{-- 10. Kursus --}}
+    <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
             <span class="item-title">Formulir Data Kursus</span>
@@ -264,7 +264,8 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
-     <div class="form-item incomplete">
+    {{-- 11. Pendukung --}}
+    <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
             <span class="item-title">Formulir Data Pendukung</span>
@@ -272,7 +273,8 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
-     <div class="form-item incomplete">
+    {{-- 12. Kegiatan --}}
+    <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
             <span class="item-title">Formulir Data Kegiatan</span>
@@ -280,7 +282,8 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
-     <div class="form-item incomplete">
+    {{-- 13. SIM --}}
+    <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
             <span class="item-title">Formulir Data SIM</span>
@@ -288,7 +291,8 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
 
-     <div class="form-item incomplete">
+    {{-- 14. Lampiran --}}
+    <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
             <span class="item-title">Formulir Data Lampiran</span>
@@ -296,7 +300,8 @@
         <i class="bi bi-file-earmark-x status-icon"></i>
     </div>
     
-     <div class="form-item incomplete">
+    {{-- 15. Persetujuan --}}
+    <div class="form-item incomplete">
         <div class="item-left">
             <span class="status-dot"></span>
             <span class="item-title">Formulir Data Persetujuan</span>
@@ -306,6 +311,7 @@
 
 </div>
 
+{{-- SIMULATION BUTTON --}}
 <button class="sim-btn" onclick="toggleStatus()">
     <i class="bi bi-magic"></i> Switch Status Demo
 </button>
@@ -321,19 +327,17 @@
             const icon = item.querySelector('.status-icon');
             
             if (isComplete) {
-                // Change to Green/Complete
+            
                 item.classList.remove('incomplete');
                 item.classList.add('complete');
                 
-                // Change Icon
+         
                 icon.classList.remove('bi-file-earmark-x');
                 icon.classList.add('bi-file-earmark-check');
             } else {
-                // Change back to Red/Incomplete
                 item.classList.remove('complete');
                 item.classList.add('incomplete');
-                
-                // Change Icon
+            
                 icon.classList.remove('bi-file-earmark-check');
                 icon.classList.add('bi-file-earmark-x');
             }

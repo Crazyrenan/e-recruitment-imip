@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
@@ -40,16 +42,16 @@
         <div class="container">
             <div class="row align-items-center text-center text-lg-start">
                 
-                <div class="col-lg-6 position-relative" style="z-index: 2;">
+                <div class="col-lg-6 position-relative" style="z-index: 2;" data-aos="fade-right" data-aos-duration="1000">
                     <h1 class="display-4 fw-bold text-dark mb-4 lh-sm hero-title">
                         Membangun Masa Depan<br>
                         Industri Indonesia di <span class="text-imip-primary">IMIP</span>
                     </h1>
-                    <p class="fs-10 text-muted mb-5 lh-lg">
+                    <p class="fs-10 text-muted mb-5 lh-lg" data-aos="fade-up" data-aos-delay="200">
                         Bergabunglah dengan tim kelas dunia di kawasan industri terintegrasi terbesar. 
                         Jadilah bagian dari transformasi hilirisasi mineral bangsa.
                     </p>
-                    <div class="d-flex flex-column flex-lg-row gap-3 justify-content-center justify-content-lg-start align-items-center">
+                    <div class="d-flex flex-column flex-lg-row gap-3 justify-content-center justify-content-lg-start align-items-center" data-aos="fade-up" data-aos-delay="400">
                         <a href="#vacancies" class="btn-imip-green shadow text-decoration-none">Cari Lowongan</a>
                         <span class="text-dark small fw-bold">
                             Sudah punya akun? <a href="#" class="text-imip-primary text-decoration-none">Login</a>
@@ -78,13 +80,13 @@
 
         <div class="container position-relative" style="z-index: 2;">
             <div class="row justify-content-center">
-                <div class="col-lg-8 text-center bg-white bg-opacity-10 p-rounded-4 backdrop-blur">
+                <div class="col-lg-8 text-center bg-white bg-opacity-10 p-rounded-4 backdrop-blur" data-aos="fade-up" data-aos-duration="1000">
                     <h2 class="fw-bold display-6 mb-2">About <span class="text-imip-primary">PT Indonesia Morowali<br>Industrial Park</span></h2>
                     <h5 class="text-uppercase text-muted fw-bold ls-1 mb-4" style="letter-spacing: 2px;">Dari Morowali untuk Indonesia</h5>
-                    <p class="text-muted lh-lg mb-4">
+                    <p class="text-muted lh-lg mb-4" data-aos="fade-up" data-aos-delay="100">
                         Selamat datang di Kawasan Industri Indonesia Morowali Industrial Park (IMIP). Dengan fasilitas canggih dan teknologi terbaru, Kawasan Industri IMIP berdedikasi untuk mengolah sumber daya nikel yang melimpah menjadi produk berkualitas tinggi yang mendukung industri global. Di sini, kami tidak hanya berfokus pada efisiensi dan inovasi, tetapi juga keberlanjutan dan tanggung jawab lingkungan. Bergabunglah dengan kami, dan saksikan bagaimana IMIP mengubah potensi alam menjadi kemajuan nyata dan berdampak positif bagi masa depan.
                     </p>
-                    <a href="#" class="btn-imip-green text-decoration-none">Read More</a>
+                    <a href="#" class="btn-imip-green text-decoration-none" data-aos="zoom-in" data-aos-delay="200">Read More</a>
                 </div>
             </div>
         </div>
@@ -93,7 +95,7 @@
     <section class="section-padding bg-light-gray">
         <div class="container">
             <div class="row g-4">
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="0">
                     <div class="hover-card p-5 border-0 shadow-sm h-100">
                         <div class="d-flex align-items-center mb-4">
                             <div class="icon-box me-3"><i class="bi bi-eye"></i></div>
@@ -104,7 +106,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="hover-card p-5 border-0 shadow-sm h-100">
                         <div class="d-flex align-items-center mb-4">
                             <div class="icon-box me-3"><i class="bi bi-bullseye"></i></div>
@@ -124,7 +126,7 @@
     <section class="section-padding bg-white">
         <div class="container">
             <div class="row align-items-center g-5">
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-right">
                     <div class="bg-imip-dark text-white p-5 rounded-4 shadow">
                         <h6 class="text-uppercase mb-3 opacity-75" style="letter-spacing: 2px;">Partnership</h6>
                         <h2 class="fw-bold mb-4">Bersama Kita Raih Kesuksesan</h2>
@@ -133,7 +135,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
                     <img src="{{ asset('image/Tenant.png') }}" alt="Partnership" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover">
                 </div>
             </div>
@@ -142,10 +144,10 @@
 
     <section class="section-padding bg-light-gray text-center" id="vacancies">
         <div class="container">
-            <h2 class="fw-bold mb-2">Temukan Karir Impian Anda</h2>
-            <p class="text-muted mb-5">Bergabunglah bersama ribuan profesional lainnya membangun industri masa depan</p>
+            <h2 class="fw-bold mb-2" data-aos="fade-down">Temukan Karir Impian Anda</h2>
+            <p class="text-muted mb-5" data-aos="fade-up">Bergabunglah bersama ribuan profesional lainnya membangun industri masa depan</p>
 
-            <div class="job-search-container d-flex gap-3 align-items-center mb-4">
+            <div class="job-search-container d-flex gap-3 align-items-center mb-4" data-aos="zoom-in" data-aos-delay="200">
                 <div class="search-input-group flex-grow-1 d-flex align-items-center">
                     <i class="bi bi-search text-imip-primary me-2 fs-5"></i>
                     <input type="text" class="form-control-clean" placeholder="Cari posisi (mis: Engineer, Admin)...">
@@ -162,7 +164,7 @@
                 <button class="btn-imip-green btn-search-mobile-full text-nowrap shadow-sm">Cari Lowongan</button>
             </div>
 
-            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5" data-aos="fade-up" data-aos-delay="300">
                 <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">Engineering</a>
                 <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">Finance</a>
                 <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">HR & GA</a>
@@ -170,14 +172,14 @@
                 <a href="#" class="badge rounded-pill bg-white text-secondary border fw-normal text-decoration-none px-3 py-2">Internship</a>
             </div>
             
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-in">
                 <h5 class="fw-bold m-0">Lowongan Terbaru <span class="text-imip-primary">(3)</span></h5>
                 <a href="#" class="text-decoration-none text-muted small fw-bold">Lihat Semua ></a>
             </div>
 
             <div class="row g-4 text-start">
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
                     <div class="hover-card d-flex flex-column h-100">
                         <div class="p-4 bg-light border-bottom d-flex gap-3 align-items-center">
                             <i class="bi bi-gear fs-3 text-imip-primary"></i>
@@ -195,7 +197,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="hover-card d-flex flex-column h-100">
                         <div class="p-4 bg-light border-bottom d-flex gap-3 align-items-center">
                             <i class="bi bi-tools fs-3 text-imip-primary"></i>
@@ -213,7 +215,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="hover-card d-flex flex-column h-100">
                         <div class="p-4 bg-light border-bottom d-flex gap-3 align-items-center">
                             <i class="bi bi-truck fs-3 text-imip-primary"></i>
@@ -237,10 +239,10 @@
 
     <section class="section-padding bg-white">
         <div class="container">
-            <h2 class="fw-bold text-center mb-5">Recruitment Information</h2>
+            <h2 class="fw-bold text-center mb-5" data-aos="fade-down">Recruitment Information</h2>
             <div class="row g-4">
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
                     <div class="hover-card p-4 text-center d-flex flex-column h-100">
                         <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-phone"></i></div>
                         <h6 class="text-imip-primary fw-bold mb-2">PENDAFTARAN DIBUKA</h6>
@@ -250,7 +252,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="hover-card p-4 text-center d-flex flex-column h-100">
                         <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-clipboard-check"></i></div>
                         <h6 class="text-imip-primary fw-bold mb-2">SELEKSI ADMINISTRASI</h6>
@@ -260,7 +262,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="hover-card p-4 text-center d-flex flex-column h-100">
                         <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-exclamation-triangle"></i></div>
                         <h6 class="text-imip-primary fw-bold mb-2">PENTING</h6>
@@ -270,7 +272,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="hover-card p-4 text-center d-flex flex-column h-100">
                         <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-whatsapp"></i></div>
                         <h6 class="text-imip-primary fw-bold mb-2">NOTIFIKASI WHATSAPP</h6>
@@ -280,7 +282,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="hover-card p-4 text-center d-flex flex-column h-100">
                         <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-calendar-event"></i></div>
                         <h6 class="text-imip-primary fw-bold mb-2">JADWAL TEST</h6>
@@ -290,7 +292,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                     <div class="hover-card p-4 text-center d-flex flex-column h-100">
                         <div class="icon-box mx-auto mb-4 bg-white border border-2 shadow-sm"><i class="bi bi-envelope"></i></div>
                         <h6 class="text-imip-primary fw-bold mb-2">KRITIK & SARAN</h6>
@@ -304,18 +306,18 @@
         </div>
     </section>
 
-    <section class="py-5 border-top border-bottom bg-white">
+    <section class="py-2 border-top border-bottom bg-white" data-aos="fade-in">
         <div class="container text-center">
             <p class="text-uppercase fw-bold text-muted small mb-4 ls-1">50+ Tenant yang ada di kawasan IMIP</p>
             <div class="d-flex justify-content-center flex-wrap gap-4 align-items-center">
-                <img src="{{ asset('image/image 24.png') }}" class="tenant-logo" alt="Tenant">
-                <img src="{{ asset('image/image 25.png') }}" class="tenant-logo" alt="Tenant">
-                <img src="{{ asset('image/image 26.png') }}" class="tenant-logo" alt="Tenant">
-                <img src="{{ asset('image/image 27.png') }}" class="tenant-logo" alt="Tenant">
-                <img src="{{ asset('image/image 28.png') }}" class="tenant-logo" alt="Tenant">
-                <img src="{{ asset('image/image 29.png') }}" class="tenant-logo" alt="Tenant">
-                <img src="{{ asset('image/image 30.png') }}" class="tenant-logo" alt="Tenant">
-                <img src="{{ asset('image/image 31.png') }}" class="tenant-logo" alt="Tenant">
+                <img src="{{ asset('image/image 24.png') }}" class="tenant-logo" alt="Tenant" data-aos="zoom-in" data-aos-delay="0">
+                <img src="{{ asset('image/image 25.png') }}" class="tenant-logo" alt="Tenant" data-aos="zoom-in" data-aos-delay="50">
+                <img src="{{ asset('image/image 26.png') }}" class="tenant-logo" alt="Tenant" data-aos="zoom-in" data-aos-delay="100">
+                <img src="{{ asset('image/image 27.png') }}" class="tenant-logo" alt="Tenant" data-aos="zoom-in" data-aos-delay="150">
+                <img src="{{ asset('image/image 28.png') }}" class="tenant-logo" alt="Tenant" data-aos="zoom-in" data-aos-delay="200">
+                <img src="{{ asset('image/image 29.png') }}" class="tenant-logo" alt="Tenant" data-aos="zoom-in" data-aos-delay="250">
+                <img src="{{ asset('image/image 30.png') }}" class="tenant-logo" alt="Tenant" data-aos="zoom-in" data-aos-delay="300">
+                <img src="{{ asset('image/image 31.png') }}" class="tenant-logo" alt="Tenant" data-aos="zoom-in" data-aos-delay="350">
             </div>
         </div>
     </section>
@@ -357,14 +359,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        const navbar = document.querySelector('.navbar');
+        AOS.init({
+            duration: 800,   
+            once: true,      
+            offset: 100,     
+            easing: 'ease-in-out',
+        });
 
+        const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { // Jika scroll lebih dari 50px
+            if (window.scrollY > 50) { 
                 navbar.classList.remove('navbar-transparent');
                 navbar.classList.add('navbar-scrolled');
-            } else { // Jika kembali ke paling atas
+            } else { 
                 navbar.classList.add('navbar-transparent');
                 navbar.classList.remove('navbar-scrolled');
             }

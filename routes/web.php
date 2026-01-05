@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,12 +45,10 @@ Route::get('/dashboard/news/info', function () {
     return view('dashboard.news-show');
 })->name('dashboard.news-show');
 
-// Route untuk Data Permintaan
 Route::get('/dashboard/formulir/permintaan', function () {
     return view('dashboard.formulir-permintaan');
 })->name('formulir.permintaan');
 
-// Route untuk Data Kontak
 Route::get('/dashboard/formulir/kontak', function () {
     return view('dashboard.formulir-kontak');
 })->name('formulir.kontak');
@@ -57,5 +57,15 @@ Route::get('/dashboard/formulir/personal', function () {
     return view('dashboard.formulir-personal');
 })->name('formulir.personal');
 
+Route::get('/dashboard/news/info2', function () {
+    return view('dashboard.news-show2');
+})->name('dashboard.news-show2');
 
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+})->name('logout');
 

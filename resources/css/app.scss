@@ -1,4 +1,4 @@
-@use "sass:color"; /* 1. REQUIRED: Import the color module */
+@use "sass:color";
 
 /* =========================================
    1. VARIABLES & CONFIG
@@ -77,7 +77,7 @@ body.dashboard-mode {
 .bg-light-gray     { background-color: #f8f9fa !important; }
 
 /* =========================================
-   3. REUSABLE COMPONENTS
+   REUSABLE COMPONENTS
    ========================================= */
 
 /* --- 3a. Universal Hover Card --- */
@@ -117,7 +117,6 @@ body.dashboard-mode {
         display: inline-block;
 
         &:hover {
-            /* 3. FIX: Updated darken to color.adjust */
             background-color: color.adjust($imip-primary, $lightness: -10%);
             color: white;
             transform: translateY(-2px);
@@ -281,7 +280,7 @@ body.dashboard-mode {
 }
 
 /* =========================================
-   4. PAGE SPECIFIC & RESPONSIVE
+   PAGE SPECIFIC & RESPONSIVE
    ========================================= */
 // Background Shape Hero (Desktop)
 .hero-bg-shape {
@@ -362,7 +361,7 @@ body.dashboard-mode {
 }
 
 /* =========================================
-   5. NAVBAR SCROLL EFFECT
+   NAVBAR SCROLL EFFECT
    ========================================= */
 .navbar-transition {
     transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -387,7 +386,7 @@ body.home-page {
 }
 
 /* =========================================
-   6. AUTH PAGES (Login/Register)
+   AUTH PAGES (Login/Register)
    ========================================= */
 .auth-wrapper {
     width: 100%;
@@ -533,8 +532,8 @@ body.home-page {
 
     /* STANDARD UX: Readonly / Disabled State */
     &[readonly], &[disabled] {
-        background-color: $bg-readonly; /* Light Gray Background */
-        color: $text-readonly; /* Dark Gray Text */
+        background-color: $bg-readonly; 
+        color: $text-readonly; 
         border-color: $border-color;
         cursor: not-allowed;
         opacity: 1; 
@@ -561,7 +560,7 @@ body.home-page {
 
 /* 5. Warning Box Component */
 .warning-box {
-    background-color: #fff4f4; /* Very light red background */
+    background-color: #fff4f4; 
     border: 1px solid #ffcccc;
     border-radius: 12px;
     padding: 25px;
@@ -590,9 +589,8 @@ body.home-page {
     gap: 15px;
     margin-top: 30px;
 
-    /* --- RESPONSIVE FIX (MODE HP) --- */
     @media (max-width: 768px) {
-        flex-direction: column-reverse; /* Batal di bawah, Selesai di atas (agar tombol utama lebih mudah dijangkau) */
+        flex-direction: column-reverse; 
         gap: 15px;
         width: 100%;
 
@@ -636,7 +634,7 @@ body.home-page {
 
 
 /* =========================================
-   7. GLOBAL FORM COMPONENTS (Reused across all forms)
+   GLOBAL FORM COMPONENTS (Reused across all forms)
    ========================================= */
 
 /* The White Card Container */
@@ -715,7 +713,7 @@ body.home-page {
 }
 
 /* =========================================
-   8. DASHBOARD SPECIFIC COMPONENTS
+   DASHBOARD SPECIFIC COMPONENTS
    ========================================= */
 
 /* Base Dashboard Card */
@@ -750,4 +748,365 @@ body.home-page {
 }
 .carousel-caption {
     background: transparent !important;
+}
+
+/* Efek Melayang (Floating) untuk Logo */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.logo-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* =========================================
+   GLOBAL TYPOGRAPHY
+   ========================================= */
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   TIMELINE COMPONENT
+   ========================================= */
+.timeline-wrapper {
+    position: relative;
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+/* The Vertical Line */
+.timeline-line {
+    position: absolute;
+    top: 10px;
+    bottom: 0;
+    left: 6px; 
+    width: 4px;
+    background-color: #000;
+    z-index: 0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    z-index: 1;
+}
+
+/* The Dot on the Line */
+.timeline-dot {
+    position: absolute;
+    left: -21px; 
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background-color: #e0e0e0;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #ccc;
+}
+
+.timeline-date {
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+/* =========================================
+   STATUS CARD COMPONENT
+   ========================================= */
+.status-card {
+    background-color: white;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.status-icon {
+    font-size: 1.8rem;
+    color: #000;
+    line-height: 1;
+    margin-top: -2px;
+}
+
+.status-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.status-desc {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* =========================================
+   UTILITIES & LAYOUT
+   ========================================= */
+.text-imip {
+    color: #005f47 !important;
+}
+
+.page-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   NEWS DETAIL
+   ========================================= */
+
+/* Hero Image Section */
+.news-hero-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    height: 400px; 
+}
+
+.news-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Badge Kategori */
+.category-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #005f47;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Content Typography */
+.news-heading-lg {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.news-meta-modern {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd;
+    object-fit: cover;
+}
+
+/* Sidebar Widget */
+.sidebar-widget {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #005f47;
+    display: inline-block;
+}
+
+.recent-post-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.recent-post-item:last-child {
+    margin-bottom: 0;
+}
+
+.recent-post-thumb {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.recent-post-info h6 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 5px;
+    transition: color 0.2s;
+}
+
+.recent-post-item:hover .recent-post-info h6 {
+    color: #005f47;
+}
+
+.recent-post-date {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* =========================================
+   NEWS LIST 
+   ========================================= */
+
+
+.info-carousel-container {
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+.carousel-item { height: 400px; }
+.carousel-item img { height: 100%; width: 100%; object-fit: cover; }
+.carousel-overlay {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 70%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    z-index: 1;
+}
+.carousel-caption {
+    z-index: 2; text-align: left !important;
+    bottom: 40px; left: 40px; right: 40px;
+}
+.carousel-caption h3 { font-weight: 800; font-size: 2rem; margin-bottom: 10px; }
+
+
+
+.modern-news-card {
+    background-color: white;
+    border: 1px solid #eee;
+    border-left: 5px solid #005f47; 
+    border-radius: 8px; 
+    padding: 30px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.modern-news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-color: #005f47;
+}
+
+.modern-news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.modern-news-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.modern-meta-group {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.modern-news-desc {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.modern-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #005f47;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+}
+
+.modern-read-more:hover {
+    gap: 12px;
+    color: #004533;
+}
+
+/* Badge Status (Optional, smaller & cleaner) */
+.status-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    background-color: #e8f5e9;
+    color: #005f47;
 }

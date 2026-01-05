@@ -21,12 +21,12 @@
         
         {{-- Hero Image --}}
         <div class="news-hero-wrapper">
-            <span class="category-badge">Syarat</span>
-            <img src="{{ asset('image/carousel 2.png') }}" class="news-hero-img" alt="Hero Image">
+            <span class="category-badge">Publish</span>
+            <img src="{{ asset('image/Image Cover.jpeg') }}" class="news-hero-img" alt="Hero Image">
         </div>
 
         {{-- Judul & Meta --}}
-        <h1 class="news-heading-lg">Sertifikat Vaksin Covid-19</h1>
+        <h1 class="news-heading-lg">Penting: Pembaruan Kebijakan K3 di Area Pabrik Morowali</h1>
         
         <div class="news-meta-modern">
             <div class="d-flex align-items-center gap-2">
@@ -41,7 +41,7 @@
         {{-- Isi Artikel --}}
         <div class="article-text">
             <p class="lead fw-bold text-secondary">
-                Informasi Penting! Bagi pelamar yang akan diproses mulai tanggal 10 November 2021 diwajibkan telah melaksanakan vaksin Covid-19 dan dibuktikan dengan sertifikat vaksin minimal dosis pertama...
+                Manajemen PT IMIP senantiasa berkomitmen untuk menjaga standar keselamatan kerja tertinggi. Berikut adalah pembaruan protokol yang wajib dipatuhi mulai bulan depan.
             </p>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus. Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi.
@@ -50,7 +50,7 @@
                 Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend.
             </p>
             
-            <h4 class="fw-bold mt-4 mb-3">Prosedur Baru Sertifikat Vaksin Covid-19</h4>
+            <h4 class="fw-bold mt-4 mb-3">Prosedur Baru Penggunaan APD</h4>
             <p>
                 Nulla varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis eleifend. Sed nec ante dictum sem condimentum ullamcorper. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.
             </p>
@@ -65,7 +65,7 @@
         <div class="mt-5 pt-3 border-top">
             <span class="fw-bold me-2">Tags:</span>
             <a href="#" class="btn btn-sm btn-light border me-1">#SafetyFirst</a>
-            <a href="#" class="btn btn-sm btn-light border me-1">#Vaksin</a>
+            <a href="#" class="btn btn-sm btn-light border me-1">#K3</a>
             <a href="#" class="btn btn-sm btn-light border">#IMIPUpdate</a>
         </div>
     </div>
