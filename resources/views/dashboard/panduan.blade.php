@@ -3,7 +3,6 @@
 @section('content')
 
 <style>
-    /* --- STYLE UTAMA (Sama seperti sebelumnya) --- */
     .guide-header {
         background: linear-gradient(135deg, #ffffff 0%, #f8fcfb 100%);
         border-radius: 16px; padding: 30px 40px;
@@ -18,7 +17,7 @@
     .guide-title { font-size: 1.8rem; font-weight: 700; color: #000; margin-bottom: 5px; }
     .guide-subtitle { color: #666; font-size: 0.95rem; margin: 0; }
 
-    /* --- SIDEBAR NAVIGASI STICKY --- */
+ 
     .guide-sidebar-wrapper {
         position: sticky;
         top: 20px;
@@ -42,7 +41,7 @@
         box-shadow: 0 2px 5px rgba(3, 98, 76, 0.1);
     }
 
-    /* --- KONTEN BACAAN --- */
+  
     .guide-section {
         background: white; border-radius: 12px; padding: 30px;
         margin-bottom: 30px; border: 1px solid #eee;
@@ -59,14 +58,14 @@
     }
     .section-title { font-size: 1.2rem; font-weight: 700; color: #333; margin: 0; }
 
-    /* Tabel Instruksi Modern */
+
     .instruction-table { width: 100%; font-size: 0.9rem; }
     .instruction-table td { padding: 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
     .instruction-table tr:last-child td { border-bottom: none; }
     .field-name { font-weight: 600; color: #03624C; width: 30%; }
     .field-desc { color: #555; line-height: 1.6; }
 
-    /* Alert Khusus Lampiran */
+   
     .file-req-box {
         background-color: #fff3cd; border: 1px solid #ffeeba;
         color: #856404; padding: 15px; border-radius: 8px;
@@ -153,7 +152,7 @@
                 Mohon perhatikan indikator status di bawah ini:
             </p>
 
-            {{-- TAMBAHAN: Foto Tampilan Overview Formulir --}}
+
             <div class="mb-4 text-center">
                 <img src="{{ asset('image/panduan pengisian.png') }}" 
                      class="img-fluid border rounded shadow-sm" 
@@ -510,6 +509,423 @@
                 </tr>
             </table>
         </div>
+        {{-- 6. DATA KONTAK --}}
+        <div id="kontak" class="guide-section">
+            <div class="section-header">
+                <div class="section-icon"><i class="bi bi-person-lines-fill"></i></div>
+                <h3 class="section-title">6. Formulir Data Kontak</h3>
+            </div>
+            
+            <table class="instruction-table">
+                <tr>
+                    <td class="field-name">Email</td>
+                    <td class="field-desc">Isi dengan alamat surat (email)</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Nomor ponsel</td>
+                    <td class="field-desc">Isi dengan nomor ponsel</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Nomor telepon rumah</td>
+                    <td class="field-desc">Isi dengan nomor telepon rumah</td>
+                </tr>
+                
+                {{-- Divider Media Sosial sesuai gambar --}}
+                <tr>
+                    <td colspan="2" class="bg-light fw-bold text-secondary text-uppercase px-3 py-2">
+                        <i class="bi bi-share-fill me-2"></i>Media Sosial
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="field-name">Whatsapp</td>
+                    <td class="field-desc">Isi dengan nomor whatsapp</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Facebook</td>
+                    <td class="field-desc">Isi dengan akun facebook</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Instagram</td>
+                    <td class="field-desc">Isi dengan akun Instagram</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Twitter</td>
+                    <td class="field-desc">Isi dengan akun twitter</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Linkedin</td>
+                    <td class="field-desc">Isi dengan akun linkedin</td>
+                </tr>
+            </table>
+        </div>
+        {{-- 7. DATA KONTAK DARURAT --}}
+        <div id="kontakdarurat" class="guide-section">
+            <div class="section-header">
+                <div class="section-icon bg-danger text-white"><i class="bi bi-hospital"></i></div>
+                <h3 class="section-title">7. Formulir Data Kontak Darurat</h3>
+            </div>
+            
+            <p class="text-muted mb-3">
+                Data ini digunakan untuk menghubungi kerabat terdekat dalam situasi darurat (Emergency Call).
+            </p>
+
+            <table class="instruction-table">
+                <tr>
+                    <td class="field-name">Nama</td>
+                    <td class="field-desc">Isi dengan nama kerabat/orang tua</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Hubungan</td>
+                    <td class="field-desc">Isi dengan hubungan (Contoh: Ayah Kandung, Istri)</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Pekerjaan</td>
+                    <td class="field-desc">Isi dengan pekerjaan kerabat</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Alamat</td>
+                    <td class="field-desc">Isi dengan alamat lengkap kerabat</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Kode pos</td>
+                    <td class="field-desc">Isi dengan kode pos alamat kerabat</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Nomor ponsel</td>
+                    <td class="field-desc">Isi dengan nomor ponsel kerabat yang bisa dihubungi</td>
+                </tr>
+            </table>
+        </div>
+
+        {{-- 8. Ahliwaris --}}
+        <div id="ahliwaris" class="guide-section">
+            <div class="section-header">
+                <div class="section-icon bg-secondary text-white"><i class="bi bi-people-fill"></i></div>
+                <h3 class="section-title">8. Formulir Data Ahli Waris</h3>
+            </div>
+            <div class="alert alert-warning d-flex gap-3 align-items-center mb-4">
+                <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+                <div class="small">
+                    <strong>Catatan:</strong> Bagi yang belum menikah ahli waris adalah <strong>Orangtua/Saudara</strong> dan di bagian bawah sesuai dengan yang tercantum pada Kartu Keluarga anda.<strong>Istri/Suami/Anak.</strong> 
+                </div>
+            </div>
+
+            <table class="instruction-table">
+                <tr>
+                    <td class="field-name">Nama</td>
+                    <td class="field-desc">Isi dengan nama</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Hubungan</td>
+                    <td class="field-desc">Isi dengan hubungan</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Tempat Lahir</td>
+                    <td class="field-desc">Isi dengan Tempat Lahir</td>
+                </tr>
+                 <tr>
+                    <td class="field-name">Tanggal Lahir</td>
+                    <td class="field-desc">Isi dengan Tanggal Lahir</td>
+                </tr>
+            </table>
+        </div>
+
+        {{-- 9. DATA KELUARGA --}}
+        <div id="keluarga" class="guide-section">
+            <div class="section-header">
+                <div class="section-icon bg-success"><i class="bi bi-people"></i></div>
+                <h3 class="section-title">9. Formulir Data Keluarga</h3>
+            </div>
+            
+          
+            <div class="alert alert-warning d-flex gap-3 align-items-center mb-4">
+                <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+                <div class="small">
+                    <strong>Catatan:</strong> Jika anda tidak memiliki anggota keluarga lain, cukup isi data <strong>Nomor Kartu Keluarga</strong> dan <strong>Nama Kepala Keluarga</strong> di bagian bawah sesuai dengan yang tercantum pada Kartu Keluarga anda.
+                </div>
+            </div>
+
+            <table class="instruction-table">
+                <tr>
+                    <td class="field-name">Hubungan</td>
+                    <td class="field-desc">Pilih jenis hubungan</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Nama</td>
+                    <td class="field-desc">Isi dengan nama</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Jenis Kelamin</td>
+                    <td class="field-desc">Pilih jenis kelamin</td>
+                </tr>
+                <tr
+                    <td class="field-name">Tanggal Lahir</td>
+                    [<td class="field-desc">Isi dengan tanggal lahir</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Pendidikan Terakhir</td>
+                    <td class="field-desc">Pilih pendidikan terakhir</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Alamat</td>
+                    <td class="field-desc">Isi dengan alamat</td>
+                </tr>
+                
+                {{-- Bagian Pekerjaan --}}
+                <tr>
+                    <td colspan="2" class="bg-light fw-bold text-muted text-uppercase small ls-1">Data Pekerjaan Keluarga</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Jabatan</td>
+                    <td class="field-desc">Isi dengan jabatan terakhir</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Perusahaan</td>
+                    <td class="field-desc">Isi dengan perusahaan terakhir bekerja</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Keterangan</td>
+                    <td class="field-desc">Isi keterangan</td>
+                </tr>
+
+                {{-- Bagian Data KK (Wajib Diisi Terakhir) --}}
+                <tr>
+                    <td colspan="2" class="bg-light fw-bold text-dark border-top border-bottom">
+                        <i class="bi bi-info-circle me-1"></i> Setelah data anggota keluarga ditambahkan, wajib isi data di bawah ini:
+                    </td>
+                </tr>
+                <tr>
+                    <td class="field-name">Nomor kartu keluarga</td>
+                    <td class="field-desc">Isi dengan nomor kartu keluarga </td>
+                </tr>
+                <tr>
+                    <td class="field-name">Nama kepala keluarga</td>
+                    <td class="field-desc">Isi dengan nama kepala keluarga </td>
+                </tr>
+            </table>
+        </div>
+
+        {{-- 8. DATA AHLI WARIS --}}
+        <div id="kursus" class="guide-section">
+            <div class="section-header">
+                {{-- Mengubah Icon Hospital menjadi People, dan bg-danger menjadi bg-secondary (abu-abu) atau sesuaikan tema --}}
+                <div class="section-icon bg-secondary text-white"><i class="bi bi-people-fill"></i></div>
+                <h3 class="section-title">10. Formulir Data Kursus</h3>
+            </div>
+
+            <table class="instruction-table">
+                <tr>
+                    <td class="field-name">Nama pelatihan</td>
+                    <td class="field-desc">Isi dengan nama pelatihan / kursus</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Penyelenggara</td>
+                    <td class="field-desc">Isi dengan penyelenggara kursus</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Tahun</td>
+                    <td class="field-desc">Isi dengan tahun mengikuti kursus</td>
+                </tr>
+                 <tr>
+                    <td class="field-name">Lamanya</td>
+                    <td class="field-desc">Isi dengan Lamanya mengikuti kursus</td>
+                </tr>
+                 <tr>
+                    <td class="field-name">Sertifikat</td>
+                    <td class="field-desc">Isi dengan data sertifikat mengikuti kursus</td>
+                </tr>
+            </table>
+        </div>
+        {{-- 11. DATA PENDUKUNG --}}
+        <div id="pendukung" class="guide-section">
+            <div class="section-header">
+                <div class="section-icon bg-info"><i class="bi bi-clipboard-data"></i></div>
+                <h3 class="section-title">11. Formulir Data Pendukung</h3>
+            </div>
+            
+            <table class="instruction-table">
+                {{-- KESEHATAN & KEBIASAAN --}}
+                <tr>
+                    <td class="field-name">Pernah saudara sakit keras ?</td>
+                    <td class="field-desc">Jawab ya atau tidak. Jika jawabannya adalah ya, maka isi jenis penyakit dan tahun berapa</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Pernah saudara mengalami kecelakaan berat ?</td>
+                    <td class="field-desc">Jawab ya atau tidak. Jika jawabannya adalah ya, maka isi akibat dan tahun berapa</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Apakah saudara memakai kacamata ?</td>
+                    <td class="field-desc">Jawab ya atau tidak</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Apakah saudara merokok ?</td>
+                    <td class="field-desc">Jawab ya atau tidak</td>
+                </tr>
+
+                {{-- KEAHLIAN BAHASA --}}
+                <tr>
+                    <td colspan="2" class="bg-light fw-bold text-muted text-uppercase small ls-1">Keahlian Bahasa</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Kemampuan bahasa mandarin</td>
+                    <td class="field-desc">Pilih dengan tingkat kemampuan bahasa mandarin</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Kemampuan bahasa inggris</td>
+                    <td class="field-desc">Pilih dengan tingkat kemampuan bahasa inggris</td>
+                </tr>
+
+                {{-- KEAHLIAN KOMPUTER --}}
+                <tr>
+                    <td colspan="2" class="bg-light fw-bold text-muted text-uppercase small ls-1">Keahlian Mengoperasikan Komputer</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Microsoft excel</td>
+                    <td class="field-desc">Tarik kursor bulat untuk mengukur kemampuan microsoft excel anda</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Microsoft word</td>
+                    <td class="field-desc">Tarik kursor bulat untuk mengukur kemampuan microsoft word anda</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Aplikasi office lainnya</td>
+                    <td class="field-desc">Isi dengan kemampuan computer lain dan tarik kursor bulat untuk mengukur kemampuan anda</td>
+                </tr>
+
+                {{-- MAINTENANCE & LAINNYA --}}
+                <tr>
+                    <td colspan="2" class="bg-light fw-bold text-muted text-uppercase small ls-1">Maintenance Ringan Komputer</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Kemampuan maintenance ringan komputer</td>
+                    <td class="field-desc">Jawab ya atau tidak</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Sebutkan</td>
+                    <td class="field-desc">Isi dengan kemampuan perbaikan computer yang anda kuasai</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Keahlian lainnya</td>
+                    <td class="field-desc">Isi dengan keahlian lainnya yang anda miliki</td>
+                </tr>
+
+                {{-- KENDARAAN --}}
+                <tr>
+                    <td colspan="2" class="bg-light fw-bold text-muted text-uppercase small ls-1">Kendaraan</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Jenis kendaraan (Merk)</td>
+                    <td class="field-desc">Isi dengan jenis kendaraan</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Tahun</td>
+                    <td class="field-desc">Isi dengan tahun kendaraan</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Milik</td>
+                    <td class="field-desc">Pilih pemilik kendaraan</td>
+                </tr>
+            </table>
+        </div>
+        {{-- 12. DATA KEGIATAN --}}
+        <div id="kegiatan" class="guide-section">
+            <div class="section-header">
+                <div class="section-icon bg-primary"><i class="bi bi-diagram-3-fill"></i></div>
+                <h3 class="section-title">12. Formulir Data Kegiatan</h3>
+            </div>
+            
+            <table class="instruction-table">
+                {{-- Bagian Organisasi --}}
+                <tr>
+                    <td class="field-name">Nama organisasi</td>
+                    <td class="field-desc">Isi dengan nama organisasi</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Tempat</td>
+                    <td class="field-desc">Isi dengan tempat organisasi berlangsung</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Jabatan</td>
+                    <td class="field-desc">Isi dengan jabatan anda didalam organisasi</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Lamanya</td>
+                    <td class="field-desc">Isi dengan lamanya menjabat dalam organisasi</td>
+                </tr>
+
+                {{-- Baris Pemisah / Instruksi (Sesuai Gambar) --}}
+                <tr>
+                    <td colspan="2" class="bg-light fw-bold text-dark border-top border-bottom small text-uppercase ls-1">
+                        <i class="bi bi-arrow-down-circle-fill me-2"></i> Setelah data diatas ditambahkan, isi yang dibawah ini
+                    </td>
+                </tr>
+
+                {{-- Bagian Minat & Hobi --}}
+                <tr>
+                    <td class="field-name">Kegiatan pada waktu luang (hobby)</td>
+                    <td class="field-desc">Isi dengan kegiatan pada waktu luang (hobby)</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Surat kabar dan majalah yang dibaca</td>
+                    <td class="field-desc">Isi dengan surat kabar dan majalah yang dibaca</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Masalah / topik yang diminati untuk dibaca</td>
+                    <td class="field-desc">Isi dengan masalah / topik yang diminati untuk dibaca</td>
+                </tr>
+            </table>
+        </div>
+        {{-- 13. DATA SIM --}}
+        <div id="sim" class="guide-section">
+            <div class="section-header">
+                <div class="section-icon bg-secondary"><i class="bi bi-car-front-fill"></i></div>
+                <h3 class="section-title">13. Formulir Data SIM</h3>
+            </div>
+            
+            <table class="instruction-table">
+                <tr>
+                    <td class="field-name">SIM A – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan data SIM A dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">SIM A Umum – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan data SIM A umum dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">SIM B – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan data SIM B dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">SIM B1 – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan data SIM B1 dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">SIM B1 Umum – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan SIM B1 Umum dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">SIM B2 – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan data SIM B2 dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">SIM B2 Umum – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan data SIM B2 umum dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">SIM C – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan data SIM C dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">SIM D – Masa berlaku</td>
+                    <td class="field-desc">Isi dengan data SIM D dan masa berlaku SIM</td>
+                </tr>
+                <tr>
+                    <td class="field-name">Surat izin operator</td>
+                    <td class="field-desc">Isi dengan surat izin operator dan masa berlaku</td>
+                </tr>
+            </table>
+        </div>
 
   {{-- 14. DATA LAMPIRAN --}}
         <div id="lampiran" class="guide-section">
@@ -617,8 +1033,6 @@
                         </ul>
                     </td>
                 </tr>
-
-                {{-- TAMBAHAN DOKUMEN PENDUKUNG & OPERATOR --}}
                 <tr>
                     <td class="field-name">Sertifikat / Sertifikasi</td>
                     <td class="field-desc">
@@ -719,7 +1133,6 @@
 
             {{-- FOTO 1: Tampilan Tabel Checklist --}}
             <div class="mb-4 text-center">
-                {{-- Simpan potongan gambar bagian atas sebagai checklist.png --}}
                 <img src="{{ asset('image/berkas.png') }}" 
                      class="img-fluid border rounded shadow-sm" 
                      alt="Tabel Checklist Berkas"
@@ -807,7 +1220,6 @@
 
             {{-- FOTO: Tampilan Timeline Status --}}
             <div class="mb-4 text-center">
-                {{-- Potong bagian atas gambar image_9ca581.jpg dan simpan sebagai status_proses.png --}}
                 <img src="{{ asset('image/status.png') }}" 
                      class="img-fluid border rounded shadow-sm" 
                      alt="Contoh Tampilan Status Proses"
@@ -839,7 +1251,6 @@
 
             {{-- FOTO: Tampilan Grid Info --}}
             <div class="mb-4 text-center">
-                {{-- Potong bagian bawah gambar image_9ca581.jpg dan simpan sebagai info_rekrutmen.png --}}
                 <img src="{{ asset('image/info.png') }}" 
                      class="img-fluid border rounded shadow-sm" 
                      alt="Contoh Tampilan Info Rekrutmen"
@@ -918,14 +1329,13 @@
 </div>
 
 <style>
-    /* Styling untuk Tombol Melayang (FAB) */
     .btn-floating-pdf {
         position: fixed;
         bottom: 30px;
         right: 30px;
         width: 60px;
         height: 60px;
-        background-color: #dc3545; /* Warna Merah PDF */
+        background-color: #dc3545; 
         color: white;
         border-radius: 50%;
         display: flex;
@@ -945,7 +1355,6 @@
         box-shadow: 0 6px 20px rgba(220, 53, 69, 0.6);
     }
 
-    /* Animasi Masuk untuk Toast */
     .toast.show {
         animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -958,11 +1367,9 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Inisialisasi Toast Bootstrap
         var toastEl = document.getElementById('pdfGuideToast');
         var toast = new bootstrap.Toast(toastEl);
         
-        // Munculkan popup setelah 3 detik halaman dimuat
         setTimeout(function() {
             toast.show();
         }, 3000);
